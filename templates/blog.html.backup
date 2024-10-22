@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BirdyPhillips - Blog</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    /* Basic styles for the page */
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      color: #2c3e50;
+      background-color: #ffffff;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .hero {
+      text-align: center;
+      padding: 100px 0;
+      background-color: #f8f8f8;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      font-family: 'Pacifico', cursive;
+      color: #00aaff;
+    }
+    .hero p {
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+    }
+    section {
+      padding: 40px 0;
+      text-align: center;
+    }
+    .box {
+      background-color: #f8f8f8;
+      color: #2c3e50;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .post {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 20px;
+      margin: 10px 0;
+      background-color: #ffffff;
+      color: #2c3e50;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .featured-post {
+      margin-bottom: 40px;
+    }
+    footer {
+      text-align: center;
+      padding: 20px 0;
+      background-color: #f8f8f8;
+      color: #2c3e50;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+    }
+    .social-links {
+      margin: 20px 0;
+    }
+    .social-links a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #00aaff;
+      font-size: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <header>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/training">Training</a></li>
+          <li><a href="/testing-center">Testing Center</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/news">News</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/photos">Photos</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <h1>BirdyPhillips Blog</h1>
+      <p>Your source for the latest IT news and insights.</p>
+      <button>Read Our Latest Posts</button>
+    </section>
+
+    <section class="featured-post">
+      <h2>Featured Post</h2>
+      <div class="post">
+        <h3>Title of the Featured Blog Post</h3>
+        <p>Published on: <strong>October 21, 2024</strong></p>
+        <p>This is a brief excerpt from the featured blog post. It gives readers an overview of the content and encourages them to read more.</p>
+        <a href="/blog/featured-post" class="btn">Read More</a>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>Recent Posts</h2>
+      <div class="post">
+        <h3><a href="/blog/post-1">Post Title 1</a></h3>
+        <p>Published on: <strong>October 15, 2024</strong></p>
+        <p>Brief summary of the first blog post, enticing readers to click and read more.</p>
+      </div>
+      <div class="post">
+        <h3><a href="/blog/post-2">Post Title 2</a></h3>
+        <p>Published on: <strong>October 10, 2024</strong></p>
+        <p>Brief summary of the second blog post, enticing readers to click and read more.</p>
+      </div>
+      <div class="post">
+        <h3><a href="/blog/post-3">Post Title 3</a></h3>
+        <p>Published on: <strong>October 5, 2024</strong></p>
+        <p>Brief summary of the third blog post, enticing readers to click and read more.</p>
+      </div>
+    </section>
+
+    <footer>
+      <div class="social-links">
+        <a href="https://www.facebook.com/BirdyPhillips" target="_blank">Facebook</a>
+        <a href="https://twitter.com/BirdyPhillips" target="_blank">Twitter</a>
+        <a href="https://www.instagram.com/BirdyPhillips" target="_blank">Instagram</a>
+        <a href="https://www.linkedin.com/company/birdyphillips" target="_blank">LinkedIn</a>
+      </div>
+      <div>
+        <p>Contact Us: (123) 456-7890</p>
+        <p>Location: 123 Birdy Street, Tech City, TX 12345</p>
+      </div>
+      <p>&copy; 2024 BirdyPhillips. All rights reserved.</p>
+    </footer>
+
+  </div>
+
+</body>
+</html>

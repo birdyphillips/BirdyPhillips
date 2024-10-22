@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Services offered by BirdyPhillips.">
+    <meta name="keywords" content="Flask, services, software development, IT solutions, veteran owned">
+    <meta name="author" content="Andre Phillips">
+    <title>Network | BirdyPhillips</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0; /* Remove padding to match home page */
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex; /* Use flexbox for layout */
+            flex-direction: column; /* Stack elements vertically */
+            align-items: center; /* Center horizontally */
+            padding-bottom: 20px; /* Space for footer */
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px; /* Space below heading */
+            text-align: center; /* Center align heading */
+            font-size: 2.5rem; /* Consistent heading size */
+            font-weight: bold; /* Make heading bold */
+        }
+
+        .service {
+            background: white; /* White background for service boxes */
+            border: 1px solid #ddd; /* Light border */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            margin: 15px; /* Space between service boxes */
+            padding: 20px; /* Padding inside service boxes */
+            max-width: 600px; /* Limit width of service boxes */
+            text-align: center; /* Center text in service boxes */
+        }
+
+        footer {
+            text-align: center; /* Center align footer text */
+            margin-top: 20px; /* Space above footer */
+            font-size: 0.9rem; /* Smaller font for footer */
+            color: white; /* Change footer color to white */
+        }
+
+        .highlight {
+            font-weight: bold; /* Bold text for emphasis */
+            color: #1abc9c; /* Highlight color */
+        }
+
+        nav {
+            position: absolute; /* Position navbar at the top */
+            top: 20px;
+            left: 20px;
+        }
+
+        nav ul {
+            list-style: none; /* Remove bullet points */
+            padding: 0; /* Remove padding */
+        }
+
+        nav ul li {
+            display: inline; /* Inline list items */
+            margin-right: 15px; /* Space between items */
+        }
+
+        nav ul li a {
+            text-decoration: none; /* Remove underline from links */
+            color: black; /* Change link color to black */
+            font-weight: bold; /* Make links bold */
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline; /* Underline on hover */
+            color: #1abc9c; /* Change link color on hover */
+        }
+
+        /* Optional: Add a background color for better contrast */
+        footer {
+            background-color: #333; /* Dark background for footer */
+            padding: 10px 0; /* Padding for footer */
+            width: 100%; /* Full width for footer */
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/news">News</a></li> <!-- Link to News page -->
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li> <!-- Optional Contact page -->
+            <li><a href="/training">Training</a></li> <!-- Optional Contact page -->
+            <li><a href="/photos">Photos</a></li> <!-- Optional Contact page -->
+        </ul>
+    </nav>
+
+    <h1>Our Services</h1>
+
+    <div class="service">
+        <h2>Custom Software Development</h2>
+        <p>We develop tailored software solutions to meet your specific business needs, ensuring efficiency and effectiveness.</p>
+    </div>
+
+    <div class="service">
+        <h2>Cisco</h2>
+        <p>Our expert consultants provide strategic guidance to help you optimize your IT infrastructure and resources.</p>
+    </div>
+
+    <div class="service">
+        <h2>Juniper</h2>
+        <p>We design and develop responsive websites that provide an exceptional user experience across all devices.</p>
+    </div>
+
+    <div class="service">
+        <h2>Network Solutions</h2>
+        <p>Our team offers comprehensive network installation and management services to ensure seamless connectivity.</p>
+    </div>
+
+    <div class="service">
+        <h2>Training Programs</h2>
+        <p>We offer training sessions to empower your team with the necessary skills to utilize our software solutions effectively.</p>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 BirdyPhillips. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

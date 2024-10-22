@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Latest news from BirdyPhillips.">
+  <meta name="keywords" content="Flask, news, updates, IT solutions, veteran owned">
+  <meta name="author" content="Andre Phillips">
+  <title>News | BirdyPhillips</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> 
+  <style>
+    /* Basic styles for the page */
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      color: #2c3e50;
+      background-color: #ffffff;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      /* Removed: font-family: 'Pacifico', cursive; */ 
+      color: #00aaff;
+      text-align: center;
+      padding: 20px 0; 
+    }
+
+    .news-article {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      margin: 15px;
+      padding: 20px;
+      max-width: 600px;
+      text-align: center; 
+      transition: transform 0.2s; 
+    }
+
+    .news-article:hover {
+      transform: scale(1.05); 
+    }
+
+
+    .news-article h2 {
+      color: #1abc9c;
+      font-size: 1.8rem;
+    }
+
+    .news-article p {
+      margin: 10px 0;
+      font-size: 1rem;
+      text-align: left; 
+    }
+
+    .news-article .date {
+      font-size: 0.9rem;
+      color: #777;
+      text-align: left;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px 0;
+      background-color: #f8f8f8; 
+      color: #2c3e50;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+    }
+
+    .social-links {
+      margin: 20px 0;
+    }
+
+    .social-links a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #00aaff;
+      font-size: 1.5rem;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      text-align: center;
+    }
+
+    nav ul li {
+      display: inline;
+      margin: 0 15px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #2c3e50;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container"> 
+    <header>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/training">Training</a></li>
+          <li><a href="/testing-center">Testing Center</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/news">News</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/photos">Photos</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <h1>Latest News</h1>
+
+    <div class="news-article">
+      <h2>Firing Up Project Management!</h2>
+      <p>We're excited to announce that we're expanding our services to include comprehensive project management solutions.  Our team is ready to help you plan, execute, and deliver successful projects on time and within budget.</p>
+      <p class="date">Published on: October 22, 2024</p>
+    </div>
+
+    <div class="news-article">
+      <h2>Reaching Out to Industry Leaders</h2>
+      <p>BirdyPhillips is establishing partnerships with leading vendors like CompTIA and Pearson VUE to enhance our training and certification programs. Stay tuned for updates on new certification offerings and improved testing services.</p>
+      <p class="date">Published on: October 22, 2024</p>
+    </div>
+
+    <div class="news-article">
+      <h2>Exciting New Features Coming Soon!</h2>
+      <p>We are thrilled to announce that new features will be added to our platform in the coming weeks to enhance user experience.</p>
+      <p class="date">Published on: October 14, 2024</p>
+    </div>
+
+    <div class="news-article">
+      <h2>BirdyPhillips Expands Service Offerings</h2>
+      <p>We're excited to expand our services to include more IT solutions tailored to your business needs.</p>
+      <p class="date">Published on: October 10, 2024</p>
+    </div>
+
+    <div class="news-article">
+      <h2>Join Our Upcoming Training Program!</h2>
+      <p>Don't miss out on our upcoming training program designed to enhance your team's skills in technology.</p>
+      <p class="date">Published on: October 5, 2024</p>
+    </div>
+
+    <footer>
+      <div class="social-links">
+        <a href="https://www.facebook.com/BirdyPhillips" target="_blank">Facebook</a>
+        <a href="https://twitter.com/BirdyPhillips" target="_blank">Twitter</a>
+        <a href="https://www.instagram.com/BirdyPhillips" target="_blank">Instagram</a>
+        <a href="https://www.linkedin.com/company/birdyphillips" target="_blank">LinkedIn</a>
+      </div>
+      <div>
+        <p>Contact Us: (123) 456-7890</p>
+        <p>Location: 123 Birdy Street, Tech City, TX 12345</p>
+      </div>
+      <p>&copy; 2024 BirdyPhillips. All rights reserved.</p>
+    </footer>
+  </div> 
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BirdyPhillips - Testing Center</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Basic styles for the page */
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      color: #2c3e50;
+      background-color: #ffffff;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .hero {
+      text-align: center;
+      padding: 100px 0;
+      background-color: #f8f8f8;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      color: #00aaff;
+    }
+    .hero p {
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+    }
+    section {
+      padding: 40px 0;
+      text-align: center;
+    }
+    .box {
+      background-color: #f8f8f8;
+      color: #2c3e50;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    footer {
+      text-align: center;
+      padding: 20px 0;
+      background-color: #f8f8f8;
+      color: #2c3e50;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+    }
+    .social-links {
+      margin: 20px 0;
+    }
+    .social-links a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #00aaff;
+      font-size: 1.5rem;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+<body>
+
+  <div class="container" id="app">
+
+    <header>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/training">Training</a></li>
+          <li><a href="/testing-center">Testing Center</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/news">News</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/photos">Photos</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <h1>Testing Center</h1>
+      <p>Your pathway to certification.</p>
+    </section>
+
+    <section class="box">
+      <h2>Make an Appointment</h2>
+      <p>Choose a certification from the dropdown list below:</p>
+      <div>
+        <label for="certification">Certification:</label>
+        <select id="certification" v-model="selectedCertification">
+          <option v-for="certification in certifications" :key="certification" :value="certification">
+            {{ certification }}
+          </option>
+        </select>
+      </div>
+      <button @click="makeAppointment">Make Appointment</button>
+      <p v-if="appointmentMessage">{{ appointmentMessage }}</p>
+    </section>
+
+    <footer>
+      <div class="social-links">
+        <a href="https://www.facebook.com/BirdyPhillips" target="_blank">Facebook</a>
+        <a href="https://twitter.com/BirdyPhillips" target="_blank">Twitter</a>
+        <a href="https://www.instagram.com/BirdyPhillips" target="_blank">Instagram</a>
+        <a href="https://www.linkedin.com/company/birdyphillips" target="_blank">LinkedIn</a>
+      </div>
+      <div>
+        <p>Contact Us: (123) 456-7890</p>
+        <p>Location: 123 Birdy Street, Tech City, TX 12345</p>
+      </div>
+      <p>&copy; 2024 BirdyPhillips. All rights reserved.</p>
+    </footer>
+
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        certifications: [
+          'CompTIA A+',
+          'CompTIA Network+',
+          'CompTIA Security+',
+          'AWS Certified Solutions Architect',
+          'Cisco CCNA',
+          'Microsoft Azure Fundamentals',
+          'Google Cloud Professional Cloud Architect',
+          'Certified Ethical Hacker',
+          // Add more certifications as needed
+        ],
+        selectedCertification: '',
+        appointmentMessage: ''
+      },
+      methods: {
+        makeAppointment() {
+          if (this.selectedCertification) {
+            this.appointmentMessage = `Appointment made for ${this.selectedCertification}.`;
+          } else {
+            this.appointmentMessage = 'Please select a certification.';
+          }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>

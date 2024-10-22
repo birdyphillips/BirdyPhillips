@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="About page for BirdyPhillips.">
+  <meta name="keywords" content="Flask, about, information, software development, veteran owned">
+  <meta name="author" content="Andre Phillips">
+  <title>About | BirdyPhillips</title>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> 
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"> 
+  <style>
+    /* Basic styles for the page */
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      color: #2c3e50;
+      background-color: #ffffff;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      font-family: 'Pacifico', cursive;
+      color: #00aaff;
+      text-align: center;
+      padding: 20px 0; 
+    }
+
+    h2 {
+      text-align: center; 
+      color: #2c3e50; 
+      margin-top: 40px; 
+    }
+
+    .box {
+      background-color: #f8f8f8;
+      color: #2c3e50;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .about-content {
+      text-align: center; 
+      line-height: 1.6; 
+    }
+
+    .about-content p {
+      text-align: justify; 
+    }
+
+    .team-section, .core-values-section {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .team-member, .core-value {
+      flex: 1;
+      min-width: 280px; 
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      text-align: center; 
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      background-color: #ffffff;
+      color: #2c3e50;
+      transition: transform 0.2s;
+    }
+
+    .team-member:hover, .core-value:hover {
+      transform: scale(1.05);
+    }
+
+    .team-photo {
+      width: 150px; 
+      height: 150px;
+      border-radius: 50%; 
+      object-fit: cover; 
+      margin-bottom: 15px; 
+    }
+
+    .card-content {
+      text-align: left; 
+    }
+
+    .card-content h4 {
+      color: #1abc9c; 
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px 0;
+      background-color: #f8f8f8; 
+      color: #2c3e50;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+    }
+
+    .social-links {
+      margin: 20px 0;
+    }
+
+    .social-links a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #00aaff;
+      font-size: 1.5rem;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      text-align: center; /* Center the navigation links */
+    }
+
+    nav ul li {
+      display: inline;
+      margin: 0 15px; /* Adjust spacing between links */
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #2c3e50; /* Use the same color as the main text */
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container"> 
+    <header>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/training">Training</a></li>
+          <li><a href="/testing-center">Testing Center</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/news">News</a></li>
+          <li><a href="/about" class="active">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/photos">Photos</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <h1>About BirdyPhillips</h1>
+
+    <div class="box about-content">
+      <p>Welcome to <strong>BirdyPhillips</strong>! Founded in 2022, we are a veteran-owned software development company dedicated to providing innovative IT solutions.</p>
+      <p>Our mission is to deliver exceptional IT services, empowering individuals and organizations through outstanding training programs while creating the premier environment for test-taking success. We strive to foster innovation, excellence, and integrity in every aspect of our work, ensuring our clients have the tools and support they need to thrive in today’s digital landscape.</p>
+      <p>Thank you for visiting!</p>
+    </div>
+
+    <h2>Our Team</h2>
+    <div class="box team-section">
+      <div class="team-member card">
+        <img src="{{ url_for('static', filename='images/andre.JPG') }}" alt="Andre Phillips" class="team-photo">
+        <div class="card-content">
+          <h4>Andre Phillips</h4>
+          <p><strong>Founder & Lead Engineer</strong></p>
+          <p>Andre has over 15 years of experience in software development and IT solutions. He is dedicated to bringing innovative and effective solutions to businesses.</p>
+        </div>
+      </div>
+
+      <div class="team-member card">
+        <img src="{{ url_for('static', filename='images/frank.jpg') }}" alt="Frank Wade" class="team-photo">
+        <div class="card-content">
+          <h4>Frank Wade</h4>
+          <p><strong>Co-Founder & Telecom Specialist</strong></p>
+          <p>With over 20 years of experience in telecommunications, Frank has worked with industry leaders such as Comcast and Charter, specializing in network infrastructure and communications technology.</p>
+        </div>
+      </div>
+
+      <div class="team-member card">
+        <img src="{{ url_for('static', filename='images/ramona.jpg') }}" alt="Ramona Phillips" class="team-photo">
+        <div class="card-content">
+          <h4>Ramona Phillips</h4>
+          <p><strong>Co-Founder & Professional Administrator</strong></p>
+          <p>Ramona has 10 years of experience in administration, with a strong background in managing operations and providing support in various settings.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>Our Core Values</h2>
+    <div class="box core-values-section">
+      <div class="core-value card">
+        <h4>Innovation</h4>
+        <p>We embrace new ideas and technologies to drive progress and enhance our services.</p>
+      </div>
+      <div class="core-value card">
+        <h4>Excellence</h4>
+        <p>We are committed to delivering high-quality services and training that exceed expectations.</p>
+      </div>
+      <div class="core-value card">
+        <h4>Integrity</h4>
+        <p>We conduct our business with honesty and transparency, building trust with our clients.</p>
+      </div>

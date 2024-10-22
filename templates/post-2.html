@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BirdyPhillips Blog - Understanding the OSI Model for IT Auditors</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    /* Basic styles for the page */
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      color: #2c3e50;
+      background-color: #ffffff;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    header {
+      background-color: #f8f8f8;
+      padding: 10px 0;
+      text-align: center;
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+    }
+    nav ul li {
+      display: inline;
+      margin: 0 15px;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #00aaff;
+      font-weight: 700;
+    }
+    section {
+      padding: 40px 0;
+      text-align: center;
+    }
+    .post {
+      background-color: #f8f8f8;
+      color: #2c3e50;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .post h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #00aaff;
+    }
+    .post p {
+      line-height: 1.6;
+      text-align: justify;
+      margin-bottom: 1rem;
+    }
+    .references {
+      text-align: left;
+      margin-top: 40px;
+      font-size: 1rem;
+    }
+    footer {
+      text-align: center;
+      padding: 20px 0;
+      background-color: #f8f8f8;
+      color: #2c3e50;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+    }
+    .social-links {
+      margin: 20px 0;
+    }
+    .social-links a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #00aaff;
+      font-size: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <header>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/training">Training</a></li>
+          <li><a href="/testing-center">Testing Center</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/news">News</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/photos">Photos</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="post">
+      <h2>Understanding the OSI Model for IT Auditors</h2>
+      <p>Author: <strong>Andre Phillips</strong></p>
+      <p>Date: <strong>October 21, 2024</strong></p>
+      <p>The OSI (Open Systems Interconnection) Model is a conceptual framework used to understand network interactions in seven layers. For IT auditors, a solid grasp of this model is essential for assessing network security, compliance, and performance. Here, we break down each layer and its significance for auditing practices.</p>
+
+      <h3>1. Physical Layer</h3>
+      <p>This layer includes all the physical equipment involved in data transmission, such as cables, switches, and routers. Auditors should ensure that hardware is properly maintained and secured against unauthorized access.</p>
+
+      <h3>2. Data Link Layer</h3>
+      <p>The data link layer establishes a direct connection between two nodes on the network. IT auditors need to evaluate MAC address filtering, switch port security, and VLAN configurations to ensure data integrity and security.</p>
+
+      <h3>3. Network Layer</h3>
+      <p>This layer manages the routing of data packets across the network. Auditors should review network configuration settings, firewalls, and access control lists to ensure proper routing and security measures are in place.</p>
+
+      <h3>4. Transport Layer</h3>
+      <p>Responsible for end-to-end communication, the transport layer ensures complete data transfer. IT auditors must verify that appropriate protocols (e.g., TCP, UDP) are utilized and that secure communication methods, such as SSL/TLS, are implemented.</p>
+
+      <h3>5. Session Layer</h3>
+      <p>This layer manages sessions between applications. Auditors should assess session management practices, including session timeouts and re-authentication protocols, to safeguard against unauthorized session hijacking.</p>
+
+      <h3>6. Presentation Layer</h3>
+      <p>The presentation layer translates data into a format understandable by the application layer. Auditors should evaluate data encryption practices at this layer to ensure sensitive information is adequately protected during transmission.</p>
+
+      <h3>7. Application Layer</h3>
+      <p>This top layer interacts directly with end-user applications. IT auditors need to assess application security, including input validation, authentication mechanisms, and overall compliance with security standards.</p>
+
+      <h3>Conclusion</h3>
+      <p>Understanding the OSI model equips IT auditors with the necessary framework to evaluate the security and efficiency of network operations. By analyzing each layer, auditors can identify vulnerabilities and ensure that organizations maintain robust security postures.</p>
+
+      <div class="references">
+        <h3>References</h3>
+        <ul>
+          <li>24FB-ITS462-1. (2024). <i>Understanding How Computers Communicate</i>. Instructure.com. <a href="https://csuglobal.instructure.com/courses/97664/pages/4-dot-1-understanding-how-computers-communicate?module_item_id=4994981" target="_blank">https://csuglobal.instructure.com/courses/97664/pages/4-dot-1-understanding-how-computers-communicate?module_item_id=4994981</a></li>
+          <li>24FB-ITS462-1. (2024). <i>Essential Network Equipment and Protocols</i>. Instructure.com. <a href="https://csuglobal.instructure.com/courses/97664/pages/4-dot-2-essential-network-equipment-and-protocols?module_item_id=4994985" target="_blank">https://csuglobal.instructure.com/courses/97664/pages/4-dot-2-essential-network-equipment-and-protocols?module_item_id=4994985</a></li>
+          <li>Wallace, K. (2024). <i>Networking Foundations: Networking Basics</i>. LinkedIn.com. <a href="https://www.linkedin.com/learning/networking-foundations-networking-basics/learning-the-seven-layers?u=2245842#" target="_blank">https://www.linkedin.com/learning/networking-foundations-networking-basics/learning-the-seven-layers?u=2245842#</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <footer>
+      <div class="social-links">
+        <a href="https://www.facebook.com/BirdyPhillips" target="_blank">Facebook</a>
+        <a href="https://twitter.com/BirdyPhillips" target="_blank">Twitter</a>
+        <a href="https://www.instagram.com/BirdyPhillips" target="_blank">Instagram</a>
+        <a href="https://www.linkedin.com/company/birdyphillips" target="_blank">LinkedIn</a>
+      </div>
+      <div>
+        <p>Contact Us: (123) 456-7890</p>
+        <p>Location: 123 Birdy Street, Tech City, TX 12345</p>
+      </div>
+      <p>&copy; 2024 BirdyPhillips. All rights reserved.</p>
+    </footer>
+
+  </div>
+
+</body>
+</html>

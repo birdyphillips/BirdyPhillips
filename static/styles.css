@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* General Styles */
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    box-sizing: border-box; /* Ensures padding and margin are included in width calculations */
+}
+
+/* Color Variables */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #1abc9c;
+    --hover-color: #16a085;
+    --background-color: #f4f4f4;
+    --text-color: #333;
+}
+
+/* Navigation Styles */
+nav {
+    background-color: transparent;
+    padding: 10px;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: #000; /* Link color set to black */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+nav ul li a:hover {
+    text-decoration: underline; /* Underline on hover */
+    color: var(--secondary-color);
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+    nav ul li {
+        display: block;
+        margin-bottom: 10px;
+    }
+}
+
+/* Heading Styles */
+h1 {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer Styles */
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* News Article Styles */
+.news-article {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.news-article:hover {
+    transform: scale(1.02);
+}
+
+.news-article h2 {
+    font-size: 1.75rem;
+    margin: 0 0 10px;
+    color: var(--primary-color);
+}
+
+.news-article p {
+    line-height: 1.6;
+    margin: 0;
+}
+
+.date {
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+/* Gallery Styles */
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center align the gallery items */
+    margin: 20px 0; /* Add margin to the gallery section */
+}
+
+.gallery-item {
+    position: relative;
+    margin: 10px; /* Margin around each gallery item */
+    background-color: #fff;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 300px; /* Set a fixed width for uniformity */
+    height: 200px; /* Set a fixed height */
+}
+
+/* Image Styles */
+.gallery-item img {
+    width: 100%; /* Fill the width of the gallery item */
+    height: 100%; /* Fill the height of the gallery item */
+    object-fit: cover; /* Cover the entire area without stretching */
+    display: block; /* Remove bottom space under images */
+}
+
+/* Responsive Styles for Gallery */
+@media (max-width: 600px) {
+    .gallery-item {
+        width: 90%; /* Make the gallery items responsive on smaller screens */
+        height: auto; /* Allow height to adjust according to image */
+    }
+}
+
+/* Team Member Styles */
+.team-member {
+    margin: 15px 0;
+    text-align: center; /* Center align text for team members */
+}
+
+.team-member img {
+    width: 100px; /* Fixed width for uniformity */
+    height: 100px; /* Fixed height to ensure circular images are the same size */
+    border-radius: 50%; /* Makes the image circular */
+    object-fit: cover; /* Ensures images fill the circle without distortion */
+}
+
+/* Plusslides Styles */
+.plusslides {
+    margin-left: 0; /* Set margin to 0 to align to the left */
+    /* Add other styles for .plusslides as needed */
+}
+
+/* Flex Container Styles for Slideshow */
+.slideshow-container {
+  position: relative;
+  max-width: 90%;
+  margin: 40px auto; /* Center the slideshow */
+  text-align: center; /* Center text inside the container */
+}
+
+.slideshow-container {
+  position: relative;
+  max-width: 90%;
+  margin: 40px auto; /* Center the slideshow */
+  text-align: center; /* Center text inside the container */
+}
+
+.mySlides {
+  display: none; /* Hide all slides by default */
+  text-align: center;
+}
+
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Adjust for vertical centering */
+  color: white; /* Change color for visibility */
+  font-size: 18px; /* Adjust size if needed */
+  padding: 16px; /* Add padding for better touch area */
+  background-color: rgba(0, 0, 0, 0.5); /* Optional: background for visibility */
+  border-radius: 5px; /* Optional: round the corners */
+}
+
+.prev {
+  left: 10px; /* Position to the left */
+}
+
+.next {
+  right: 10px; /* Position to the right */
+}

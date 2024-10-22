@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BirdyPhillips - Our Services</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    /* Basic styles for the page */
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      color: #2c3e50;
+      background-color: #ffffff;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .hero {
+      text-align: center;
+      padding: 100px 0;
+      background-color: #f8f8f8;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      font-family: 'Roboto', sans-serif; /* Changed to Roboto */
+      color: #00aaff;
+    }
+    .hero p {
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+    }
+    section {
+      padding: 40px 0;
+      text-align: center;
+    }
+    .box {
+      background-color: #f8f8f8;
+      color: #2c3e50;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .card-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 20px;
+    }
+    .card {
+      flex: 1;
+      min-width: 280px;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      text-align: left;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      background-color: #ffffff;
+      color: #2c3e50;
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: scale(1.05);
+    }
+    footer {
+      text-align: center;
+      padding: 20px 0;
+      background-color: #f8f8f8;
+      color: #2c3e50;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+    }
+    .social-links {
+      margin: 20px 0;
+    }
+    .social-links a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #00aaff;
+      font-size: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <header>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/training">Training</a></li>
+          <li><a href="/testing-center">Testing Center</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/news">News</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/photos">Photos</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <h1>Our Services</h1>
+      <p>Discover the range of IT solutions we offer to enhance your business.</p>
+    </section>
+
+    <section class="box">
+      <h2>IT Services</h2>
+      <div class="card-container">
+        <div class="card">
+          <h3>AWS</h3>
+          <p>Expert setup and configuration of AWS servers tailored to your business needs, ensuring high availability and scalability.</p>
+        </div>
+        <div class="card">
+          <h3>Web Development</h3>
+          <p>Comprehensive web development services, from front-end design to back-end implementation, ensuring a responsive and user-friendly experience.</p>
+        </div>
+        <div class="card">
+          <h3>Testing</h3>
+          <p>Robust testing services, including functional, performance, and security testing, to ensure your applications run smoothly and securely.</p>
+        </div>
+        <div class="card">
+          <h3>Network Installation & Monitoring</h3>
+          <p>Professional network installation services to optimize connectivity and performance in your organization.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>Training Programs</h2>
+      <div class="card-container">
+        <div class="card">
+          <h3>CompTIA</h3>
+          <p>Prepare for CompTIA certifications with our comprehensive training programs covering A+, Network+, and Security+.</p>
+        </div>
+        <div class="card">
+          <h3>AWS Certification</h3>
+          <p>Hands-on training for AWS certifications, ensuring you gain the skills needed for cloud computing.</p>
+        </div>
+        <div class="card">
+          <h3>Coding Bootcamp</h3>
+          <p>Intensive coding bootcamp to help you launch your career in software development, covering HTML, CSS, JavaScript, and Python.</p>
+        </div>
+        <div class="card">
+          <h3>CCNA</h3>
+          <p>Prepare for the Cisco Certified Network Associate (CCNA) certification with our in-depth training program focused on networking fundamentals.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>Testing Services</h2>
+      <div class="card-container">
+        <div class="card">
+          <h3>Secure Environment</h3>
+          <p>Our testing facility provides a controlled and secure testing environment.</p>
+        </div>
+        <div class="card">
+          <h3>Flexible Scheduling</h3>
+          <p>Choose from various testing times to fit your schedule. Our center is open on weekdays and weekends for your convenience.</p>
+        </div>
+        <div class="card">
+          <h3>Support Services</h3>
+          <p>Our staff is available to assist you with any questions or issues you may encounter during your testing experience.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="social-links">
+        <a href="https://www.facebook.com/BirdyPhillips" target="_blank">Facebook</a>
+        <a href="https://twitter.com/BirdyPhillips" target="_blank">Twitter</a>
+        <a href="https://www.instagram.com/BirdyPhillips" target="_blank">Instagram</a>
+        <a href="https://www.linkedin.com/company/birdyphillips" target="_blank">LinkedIn</a>
+      </div>
+      <div>
+        <p>Contact Us: (123) 456-7890</p>
+        <p>Location: 123 Birdy Street, Tech City, TX 12345</p>
+      </div>
+      <p>&copy; 2024 BirdyPhillips. All rights reserved.</p>
+    </footer>
+
+  </div>
+
+</body>
+</html>
