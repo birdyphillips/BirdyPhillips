@@ -18,6 +18,7 @@ if not os.path.exists(app.config['UPLOAD_FOLDER']):
 # Register the blueprints
 app.register_blueprint(photo_bp, url_prefix='/photos')
 app.register_blueprint(about_bp)
+
 # Configure after-request caching headers
 @app.after_request
 def add_header(response):
@@ -39,48 +40,57 @@ def home():
 
 @app.route('/about')
 def about():
+    """Render the about page."""
     return render_template('about.html')
 
 @app.route('/blog')
 def blog():
-    return render_template('blog.html')  # Your blog page
+    """Render the blog page."""
+    return render_template('blog.html')
 
 @app.route('/news')
 def news():
-    return render_template('news.html')  # Render the news.html template
+    """Render the news page."""
+    return render_template('news.html')
 
 @app.route('/contact')
 def contact():
-    return render_template('contact.html')  # Render the contact.html template
+    """Render the contact page."""
+    return render_template('contact.html')
 
 @app.route('/training')
 def training():
-    return render_template('training.html')  # Render the training.html template
+    """Render the training page."""
+    return render_template('training.html')
 
 @app.route('/services')
 def services():
-    return render_template('services.html')  # Render the services.html template
+    """Render the services page."""
+    return render_template('services.html')
 
 @app.route('/networks')
 def networks():
-    return render_template('networks.html')  # Render the networks.html template
+    """Render the networks page."""
+    return render_template('networks.html')
 
 @app.route('/testing-center')
 def testing_center():
-    return render_template('testing_center.html')  # Render the testing_center.html template
+    """Render the testing center page."""
+    return render_template('testing_center.html')
 
 @app.route('/blog/post-1')
 def post_1():
-    return render_template('post-1.html')  # Render the post-1.html template
+    """Render the first blog post."""
+    return render_template('post-1.html')
 
 @app.route('/blog/post-2')
 def post_2():
-    return render_template('post-2.html')  # Render the post-2.html template
+    """Render the second blog post."""
+    return render_template('post-2.html')
 
 @app.route('/blog/post-3')
 def post_3():
     return render_template('post-3.html')  # Render the post-3.html template
-
 
 if __name__ == '__main__':
     # Make sure the app runs in debug mode for development, can switch off for production

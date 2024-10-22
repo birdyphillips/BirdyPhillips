@@ -6,9 +6,7 @@
   <title>BirdyPhillips Blog - Post 1</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
   <style>
-    /* Basic styles for the page */
     body {
       font-family: 'Roboto', sans-serif;
       margin: 0;
@@ -22,15 +20,18 @@
     }
     header {
       background-color: #f8f8f8;
-      padding: 10px 0;
+      padding: 20px 0;
       text-align: center;
+      border-bottom: 1px solid #ddd;
     }
     nav ul {
       list-style: none;
       padding: 0;
+      display: flex;
+      justify-content: center;
+      margin: 0;
     }
     nav ul li {
-      display: inline;
       margin: 0 15px;
     }
     nav ul li a {
@@ -38,120 +39,67 @@
       color: #00aaff;
       font-weight: 700;
     }
-    section {
-      padding: 40px 0;
+    .hero {
       text-align: center;
-    }
-    .post {
+      padding: 50px 0;
       background-color: #f8f8f8;
-      color: #2c3e50;
-      padding: 20px;
-      margin: 20px 0;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
-    .post h2 {
-      font-size: 2.5rem;
+    .hero h1 {
+      font-size: 3rem;
       margin-bottom: 1rem;
       color: #00aaff;
     }
-    .post p {
-      line-height: 1.6;
-      text-align: justify;
-      margin-bottom: 1rem;
+    .hero p {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    main {
+      padding: 40px 0;
+    }
+    article {
+      margin-bottom: 40px;
     }
     footer {
-      text-align: center;
-      padding: 20px 0;
       background-color: #f8f8f8;
-      color: #2c3e50;
-      position: relative;
-      bottom: 0;
-      width: 100%;
-    }
-    .social-links {
-      margin: 20px 0;
-    }
-    .social-links a {
-      margin: 0 10px;
-      text-decoration: none;
-      color: #00aaff;
-      font-size: 1.5rem;
+      padding: 20px 0;
+      text-align: center;
+      border-top: 1px solid #ddd;
     }
   </style>
 </head>
 <body>
-
-  <div class="container">
-
-    <header>
+  <header>
+    <div class="container">
+      <h1>BirdyPhillips Blog</h1>
       <nav>
         <ul>
           <li><a href="/">Home</a></li>
-          <li><a href="/services">Services</a></li>
-          <li><a href="/training">Training</a></li>
-          <li><a href="/testing-center">Testing Center</a></li>
-          <li><a href="/blog">Blog</a></li>
-          <li><a href="/news">News</a></li>
           <li><a href="/about">About</a></li>
+          <li><a href="/blog">Blog</a></li>
           <li><a href="/contact">Contact</a></li>
-          <li><a href="/photos">Photos</a></li>
         </ul>
       </nav>
-    </header>
-
-    <section class="post">
-      <h2>Understanding MySQL Data Manipulation</h2>
-      <p>Author: <strong>Andre Phillips</strong></p>
-      <p>Date: <strong>October 21, 2024</strong></p>
-      <p>One of the most important functions of any relational database management system (RDBMS) is to support your ability to manipulate data. To this end, you must be able to insert data in a table, modify that data, and then delete whatever data you no longer want to store. Below are some MySQL commands that can be used to perform these tasks.</p>
-      
-      <h3>Data Manipulation Commands</h3>
-      <p>Data manipulation in MySQL is essential for various reasons. It allows users to insert new data into tables, modify existing data, and delete unwanted data. This functionality is crucial for keeping databases up to date, correcting errors, and managing the information stored in the system. MySQL provides commands such as <strong>INSERT</strong>, <strong>UPDATE</strong>, and <strong>DELETE</strong> to perform these operations efficiently.</p>
-
-      <h4>1. INSERT Command</h4>
-      <p>This SQL statement inserts a new record into the "employees" table with the specified values:</p>
-      <pre><code>INSERT INTO employees (first_name, last_name, email, job_title, hire_date)
-VALUES ('John', 'Doe', 'john.doe@example.com', 'Sales Representative', '2024-10-19');</code></pre>
-      <p>This command adds a new employee record to the "employees" table with details such as first name, last name, email, job title, and hire date.</p>
-
-      <h4>2. UPDATE Command</h4>
-      <p>This SQL statement modifies the "job_title" value for the employee named "John Doe" in the "employees" table:</p>
-      <pre><code>UPDATE employees
-SET job_title = 'Sales Manager'
-WHERE email = 'john.doe@example.com';</code></pre>
-      <p>This command updates the job title of the specified employee, ensuring that the information remains current and accurate.</p>
-
-      <h4>3. DELETE Command</h4>
-      <p>This SQL statement removes the record of the specified employee from the "employees" table:</p>
-      <pre><code>DELETE FROM employees
-WHERE email = 'john.doe@example.com';</code></pre>
-      <p>This command deletes the employee record from the table, effectively removing unwanted data from the database.</p>
-
-      <h3>Hazards of Using MySQL Commands</h3>
-      <p>While MySQL commands are powerful for managing data, there are some hazards to consider:</p>
-      <ul>
-        <li><strong>Data Loss:</strong> Executing <code>DELETE</code> or <code>UPDATE</code> commands without proper conditions can lead to unintended loss of data.</li>
-        <li><strong>Data Integrity:</strong> Improperly structured commands may result in inconsistent data, which can affect the integrity of the database.</li>
-        <li><strong>Security Risks:</strong> If commands are constructed with user input without proper validation, it can lead to SQL injection attacks.</li>
-      </ul>
-    </section>
-
-    <footer>
-      <div class="social-links">
-        <a href="https://www.facebook.com/BirdyPhillips" target="_blank">Facebook</a>
-        <a href="https://twitter.com/BirdyPhillips" target="_blank">Twitter</a>
-        <a href="https://www.instagram.com/BirdyPhillips" target="_blank">Instagram</a>
-        <a href="https://www.linkedin.com/company/birdyphillips" target="_blank">LinkedIn</a>
-      </div>
-      <div>
-        <p>Contact Us: (123) 456-7890</p>
-        <p>Location: 123 Birdy Street, Tech City, TX 12345</p>
-      </div>
-      <p>&copy; 2024 BirdyPhillips. All rights reserved.</p>
-    </footer>
-
+    </div>
+  </header>
+  <div class="hero">
+    <div class="container">
+      <h1>Post 1 Title</h1>
+      <p>Subtitle or brief description of the post.</p>
+    </div>
   </div>
-
+  <main>
+    <div class="container">
+      <article>
+        <h2>Introduction</h2>
+        <p>Content of the blog post goes here...</p>
+        <!-- Additional sections and content -->
+      </article>
+    </div>
+  </main>
+  <footer>
+    <div class="container">
+      <p>&copy; 2023 BirdyPhillips. All rights reserved.</p>
+    </div>
+  </footer>
 </body>
 </html>
