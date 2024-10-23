@@ -1,23 +1,43 @@
 from flask import Flask, request, redirect, url_for, render_template
-from photo_routes import photo_bp  # Import the photo routes blueprint
-from about import about_bp
+from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
 import os
 
+# Initialize the Flask application
 app = Flask(__name__)
 
-# Stronger secret key, using environment variables
-app.secret_key = os.getenv('FLASK_SECRET_KEY', 'your_default_fallback_secret_key')
+# Configure the secret key for session management
+# Use environment variables for stronger security
+app.config['SECRET_KEY'] = os.getenv('FLASK_SECRET_KEY', 'your_default_fallback_secret_key')
 
-# Define the upload folder at the application level
-app.config['UPLOAD_FOLDER'] = os.path.join('static', 'uploads') 
+# Configure the SQLAlchemy database
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 
-# Create uploads folder if it doesn't exist
-if not os.path.exists(app.config['UPLOAD_FOLDER']):
-    os.makedirs(app.config['UPLOAD_FOLDER'])
+# Configure the upload folder for storing uploaded files
+app.config['UPLOAD_FOLDER'] = os.path.join('static', 'uploads')
+
+# Initialize the SQLAlchemy database instance
+db = SQLAlchemy(app)
+
+# Initialize the Flask-Login manager
+login_manager = LoginManager(app)
+login_manager.login_view = 'auth.login'  # Set the login view for unauthorized users
+
+# Import and register blueprints
+from photo_routes import photo_bp  # Import the photo routes blueprint
+from about import about_bp  # Import the about routes blueprint
+from auth import auth_bp, login_manager as auth_login_manager  # Import the auth blueprint and related instances
 
 # Register the blueprints
 app.register_blueprint(photo_bp, url_prefix='/photos')
 app.register_blueprint(about_bp)
+app.register_blueprint(auth_bp, url_prefix='/auth')
+
+# Initialize extensions
+auth_login_manager.init_app(app)
+
+# Ensure the upload folder exists
+os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
 # Configure after-request caching headers
 @app.after_request
@@ -35,64 +55,51 @@ def add_header(response):
 @app.route('/')
 def home():
     image_folder = 'static/uploads'  # Path to your images
-    images = os.listdir(image_folder)  # List all files in the uploads directory
-    return render_template('home.html', images=images)
-
-@app.route('/about')
-def about():
-    """Render the about page."""
-    return render_template('about.html')
-
-@app.route('/blog')
-def blog():
-    """Render the blog page."""
-    return render_template('blog.html')
-
-@app.route('/news')
-def news():
-    """Render the news page."""
-    return render_template('news.html')
-
-@app.route('/contact')
-def contact():
-    """Render the contact page."""
-    return render_template('contact.html')
-
-@app.route('/training')
-def training():
-    """Render the training page."""
-    return render_template('training.html')
+    return render_template('home.html')
 
 @app.route('/services')
 def services():
-    """Render the services page."""
-    return render_template('services.html')
+    return render_template('services.html')  # Render the services.html template
 
 @app.route('/networks')
 def networks():
-    """Render the networks page."""
-    return render_template('networks.html')
+    return render_template('networks.html')  # Render the networks.html template
 
 @app.route('/testing-center')
 def testing_center():
-    """Render the testing center page."""
-    return render_template('testing_center.html')
+    return render_template('testing_center.html')  # Render the testing_center.html template
+
+@app.route('/blog')
+def blog():
+    return render_template('blog.html')  # Render the blog.html template
 
 @app.route('/blog/post-1')
 def post_1():
-    """Render the first blog post."""
-    return render_template('post-1.html')
+    return render_template('post-1.html')  # Render the post-1.html template
 
 @app.route('/blog/post-2')
 def post_2():
-    """Render the second blog post."""
-    return render_template('post-2.html')
+    return render_template('post-2.html')  # Render the post-2.html template
 
 @app.route('/blog/post-3')
 def post_3():
     return render_template('post-3.html')  # Render the post-3.html template
 
+@app.route('/training')
+def training():
+    return render_template('training.html')  # Render the training.html template
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')  # Render the contact.html template
+
+@app.route('/news')
+def news():
+    return render_template('news.html')  # Render the news.html template
+
 if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
     # Make sure the app runs in debug mode for development, can switch off for production
     debug_mode = os.getenv('FLASK_DEBUG', 'True') == 'True'
     app.run(debug=debug_mode)

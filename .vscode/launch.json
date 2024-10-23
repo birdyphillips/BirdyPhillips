@@ -1,0 +1,26 @@
+{
+    "configurations": [
+        {"name":"Python Debugger: Current File","type":"debugpy","request":"launch","program":"${file}","console":"integratedTerminal"},
+        {
+            "type": "debugpy",
+            "request": "launch",
+            "name": "Launch App",
+            "program": "${workspaceFolder}/${input:programName}",
+            "console": "integratedTerminal"
+        }
+    ],
+    "inputs": [
+        {
+            "type": "pickString",
+            "id": "programName",
+            "description": "Select the program to launch",
+            "options": [
+                "about.py",
+                "app.py",
+                "auth.py",
+                "photo_routes.py",
+                "slideshow.py"
+            ]
+        }
+    ]
+}

@@ -1,233 +1,153 @@
-6<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Photo gallery page for my Flask app.">
-    <meta name="keywords" content="Flask, photo gallery, images, photography">
-    <meta name="author" content="Andre Phillips">
-    <title>Photo Gallery | My Family App</title>
-
+    <title>BirdyPhillips - Photo Gallery</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <style>
+        /* Basic styles for the page */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            position: relative;
+            color: #2c3e50;
+            background-color: #ffffff;
         }
 
-        h1 {
-            color: #2c3e50;
-            margin: 20px 0;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
             text-align: center;
-            font-size: 2.5rem;
-            font-weight: bold;
+            padding: 100px 0;
+            background-color: #f8f8f8;
         }
 
-        nav {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-        }
-
-        nav ul {
-            list-style: none;
-            padding: 0;
-            display: flex; /* Use flex for navigation */
-            flex-wrap: wrap; /* Allow wrapping on smaller screens */
-        }
-
-        nav ul li {
-            margin-right: 15px;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: #2c3e50;
-            font-weight: bold;
-            padding: 10px 15px; /* Added padding for better click area */
-        }
-
-        nav ul li a:hover {
-            text-decoration: underline;
-            color: #1abc9c;
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-family: 'Pacifico', cursive;
+            color: #00aaff;
         }
 
         .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 10px;
-            margin: 20px 0;
-            max-width: 1200px;
-            padding: 10px;
-            width: 100%; /* Ensure full width */
-        }
-
-        .gallery-item {
-            position: relative;
-            background-color: #fff;
-            border: 2px solid #2c3e50;
-            border-radius: 5px;
-            overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            width: 100%; /* Change to full width */
-            height: 200px; /* Fixed height for square aspect ratio */
             display: flex;
-            flex-direction: column; /* Use flex for better layout */
-            align-items: center; /* Center items */
-            justify-content: center; /* Center items */
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
-        .gallery-item img {
-            width: 100%;
-            height: 100%; /* Adjust height to fill square */
-            object-fit: cover; /* Ensures images cover the entire box */
-            display: block;
+        .gallery div {
+            margin: 10px;
+            text-align: center;
         }
 
-        .delete-btn,
-        .update-btn {
-            position: absolute;
-            bottom: 5px;
-            right: 5px;
-            background-color: #e74c3c;
-            color: #fff;
+        .gallery img {
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #ff4d4d;
+            color: white;
             border: none;
-            border-radius: 3px;
-            padding: 5px 10px;
+            border-radius: 5px;
             cursor: pointer;
-            font-size: 0.8rem; /* Adjust font size for mobile */
         }
 
-        .delete-btn:hover {
-            background-color: #c0392b;
+        .gallery button:hover {
+            background-color: #ff1a1a;
         }
 
-        .update-btn {
-            background-color: #3498db;
-        }
-
-        .update-btn:hover {
-            background-color: #2980b9;
+        .upload-form {
+            margin: 20px 0;
+            text-align: center;
         }
 
         footer {
             text-align: center;
-            margin-top: auto;
-            font-size: 0.9rem;
-            color: white;
-            background-color: #2c3e50;
-            padding: 10px;
-            width: 100%;
-            position: absolute;
+            padding: 20px 0;
+            background-color: #f8f8f8;
+            color: #2c3e50;
+            position: relative;
             bottom: 0;
-            left: 0;
+            width: 100%;
         }
 
-        /* New styles for upload feedback */
-        .message {
-            color: green;
-            font-weight: bold;
-            margin: 10px 0;
+        .social-links {
+            margin: 20px 0;
         }
 
-        /* Media Queries for Mobile Responsiveness */
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 2rem; /* Smaller heading for mobile */
-            }
-
-            nav {
-                position: relative; /* Change to relative for better mobile display */
-                margin-bottom: 15px; /* Add margin below nav */
-            }
-
-            nav ul {
-                flex-direction: column; /* Stack items vertically on mobile */
-                align-items: flex-start; /* Align items to the start */
-            }
-
-            nav ul li {
-                margin-right: 0; /* Remove right margin */
-                margin-bottom: 10px; /* Add space between items */
-            }
-
-            .gallery-item {
-                height: 150px; /* Adjust height for mobile */
-            }
-
-            .delete-btn,
-            .update-btn {
-                font-size: 0.7rem; /* Smaller buttons on mobile */
-            }
+        .social-links a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #00aaff;
+            font-size: 1.5rem;
         }
     </style>
 </head>
 
 <body>
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/blog">Blog</a></li>
-            <li><a href="/news">News</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/contact">Contact</a></li>
-            <li><a href="/training">Training</a></li>
-            <li><a href="/photos">Photos</a></li>
-            <li><a href="/networks">Networks</a></li>
-        </ul>
-    </nav>
-
-    <h1>Photo Gallery</h1>
-
-    <!-- Upload Photo Form -->
-    <form action="{{ url_for('photo_bp.upload_photo') }}" method="POST" enctype="multipart/form-data">
-        <input type="file" name="photo" accept="image/*" required>
-        <button type="submit">Upload Photo</button>
-    </form>
-
-    <!-- Flash Messages -->
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <ul>
-                {% for message in messages %}
-                    <li class="message">{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-    {% endwith %}
-
-    <div class="gallery">
-        {% for photo in photos %}
-        <div class="gallery-item">
-            <img src="{{ url_for('photo_bp.uploaded_file', filename=photo) }}" alt="Description of {{ photo }}">
-            
-            <!-- Update Photo Form -->
-            <form action="{{ url_for('photo_bp.update_photo', filename=photo) }}" method="POST" enctype="multipart/form-data" style="display: inline;">
-                <input type="file" name="updated_photo" accept="image/*" required style="display: none;"> <!-- Hide file input -->
-                <button type="submit" class="update-btn">Update</button>
-            </form>
-            
-            <!-- Delete Photo Form -->
-            <form action="{{ url_for('photo_bp.delete_photo', filename=photo) }}" method="POST" style="display: inline;">
-                <button type="submit" class="delete-btn">Delete</button>
+    <div class="container">
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/services">Services</a></li>
+                    <li><a href="/training">Training</a></li>
+                    <li><a href="/testing-center">Testing Center</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/news">News</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/photos">Photos</a></li>
+                </ul>
+            </nav>
+        </header>
+        <section class="hero">
+            <h1>Photo Gallery</h1>
+            <p>Explore our collection of photos.</p>
+        </section>
+        <div class="upload-form">
+            <form action="{{ url_for('photo_bp.upload_photo') }}" method="POST" enctype="multipart/form-data">
+                <input type="file" name="photo" accept="image/*">
+                <button type="submit">Upload Photo</button>
             </form>
         </div>
-        {% endfor %}
+        <div class="gallery">
+            {% for photo in photos %}
+            <div>
+                <img src="{{ url_for('photo_bp.uploaded_file', filename=photo) }}" alt="Photo">
+                <form action="{{ url_for('photo_bp.delete_photo', filename=photo) }}" method="POST">
+                    <button type="submit">Delete</button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+        <footer>
+            <div class="social-links">
+                <a href="https://www.facebook.com/BirdyPhillips" target="_blank">Facebook</a>
+                <a href="https://twitter.com/BirdyPhillips" target="_blank">Twitter</a>
+                <a href="https://www.instagram.com/BirdyPhillips" target="_blank">Instagram</a>
+                <a href="https://www.linkedin.com/company/birdyphillips" target="_blank">LinkedIn</a>
+            </div>
+            <div>
+                <p>Contact Us: (123) 456-7890</p>
+                <p>Location: 123 Birdy Street, Tech City, TX 12345</p>
+            </div>
+            <p>&copy; 2024 BirdyPhillips. All rights reserved.</p>
+        </footer>
     </div>
-
-    <footer>
-        <p>&copy; 2024 BirdyPhillips. All rights reserved.</p>
-    </footer>
 </body>
 
 </html>
-

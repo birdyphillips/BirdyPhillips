@@ -3,7 +3,7 @@ from flask import Blueprint, request, redirect, url_for, render_template, flash,
 from werkzeug.utils import secure_filename
 
 # Configuration
-UPLOAD_FOLDER = r'/static/uploads'  # Use raw string to handle backslashes
+UPLOAD_FOLDER = os.path.join(os.getcwd(), 'static', 'uploads')  # Use absolute path
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 # Create the upload folder if it doesn't exist
@@ -109,4 +109,3 @@ def update_photo(filename):
         flash('Invalid file type. Please upload an image file.')
 
     return redirect(url_for('photo_bp.show_photos'))
-
