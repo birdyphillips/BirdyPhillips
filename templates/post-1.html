@@ -83,16 +83,47 @@
   </header>
   <div class="hero">
     <div class="container">
-      <h1>Post 1 Title</h1>
+      <h1>Understanding MySQL Data Manipulation<</h1>
       <p>Subtitle or brief description of the post.</p>
     </div>
   </div>
   <main>
     <div class="container">
       <article>
-        <h2>Introduction</h2>
-        <p>Content of the blog post goes here...</p>
-        <!-- Additional sections and content -->
+        <h2>Understanding MySQL Data Manipulation</h2>
+        <p><strong>Author:</strong> Andre Phillips</p>
+        <p><strong>Date:</strong> October 21, 2024</p>
+        <p>One of the most important functions of any relational database management system (RDBMS) is to support your ability to manipulate data. To this end, you must be able to insert data in a table, modify that data, and then delete whatever data you no longer want to store. Below are some MySQL commands that can be used to perform these tasks.</p>
+        
+        <h3>Data Manipulation Commands</h3>
+        <p>Data manipulation in MySQL is essential for various reasons. It allows users to insert new data into tables, modify existing data, and delete unwanted data. This functionality is crucial for keeping databases up to date, correcting errors, and managing the information stored in the system. MySQL provides commands such as INSERT, UPDATE, and DELETE to perform these operations efficiently.</p>
+        
+        <h4>1. INSERT Command</h4>
+        <p>This SQL statement inserts a new record into the "employees" table with the specified values:</p>
+        <pre><code>INSERT INTO employees (first_name, last_name, email, job_title, hire_date)
+VALUES ('John', 'Doe', 'john.doe@example.com', 'Sales Representative', '2024-10-19');</code></pre>
+        <p>This command adds a new employee record to the "employees" table with details such as first name, last name, email, job title, and hire date.</p>
+        
+        <h4>2. UPDATE Command</h4>
+        <p>This SQL statement modifies the "job_title" value for the employee named "John Doe" in the "employees" table:</p>
+        <pre><code>UPDATE employees
+SET job_title = 'Sales Manager'
+WHERE email = 'john.doe@example.com';</code></pre>
+        <p>This command updates the job title of the specified employee, ensuring that the information remains current and accurate.</p>
+        
+        <h4>3. DELETE Command</h4>
+        <p>This SQL statement removes the record of the specified employee from the "employees" table:</p>
+        <pre><code>DELETE FROM employees
+WHERE email = 'john.doe@example.com';</code></pre>
+        <p>This command deletes the employee record from the table, effectively removing unwanted data from the database.</p>
+        
+        <h3>Hazards of Using MySQL Commands</h3>
+        <p>While MySQL commands are powerful for managing data, there are some hazards to consider:</p>
+        <ul>
+          <li><strong>Data Loss:</strong> Executing DELETE or UPDATE commands without proper conditions can lead to unintended loss of data.</li>
+          <li><strong>Data Integrity:</strong> Improperly structured commands may result in inconsistent data, which can affect the integrity of the database.</li>
+          <li><strong>Security Risks:</strong> If commands are constructed with user input without proper validation, it can lead to SQL injection attacks.</li>
+        </ul>
       </article>
     </div>
   </main>

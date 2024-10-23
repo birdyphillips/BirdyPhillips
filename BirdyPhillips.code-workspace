@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../MySQL_Training"
+		},
+		{
+			"path": "../Wist_Team_Project"
+		},
+		{
+			"path": "../Python_Training"
+		},
+		{
+			"path": "../Linux_Training"
+		}
+	],
+	"settings": {}
+}
