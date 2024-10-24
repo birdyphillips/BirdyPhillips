@@ -1,6 +1,6 @@
 from flask import Flask, request, redirect, url_for, render_template
 from extensions import db, login_manager  # Import the existing SQLAlchemy and LoginManager instances
-from auth import LoginForm, RegistrationForm  # Import the forms from auth.py
+from flask_login import login_required  # Import login_required decorator
 import os
 
 # Initialize the Flask application
@@ -85,18 +85,11 @@ def contact():
 def news():
     return render_template('news.html')  # Render the news.html template
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    login_form = LoginForm()
-    register_form = RegistrationForm()
-    if request.method == 'POST':
-        if login_form.validate_on_submit():
-            # Handle login logic here
-            pass
-        elif register_form.validate_on_submit():
-            # Handle registration logic here
-            pass
-    return render_template('login.html', login_form=login_form, register_form=register_form)  # Render the login.html template
+@app.route('/photos', methods=['GET'])
+@login_required
+def photos():
+    # Handle the logic for displaying photos here
+    return render_template('photos.html')  # Render the photos.html template
 
 if __name__ == '__main__':
     with app.app_context():

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}BirdyPhillips{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/training">Training</a></li>
+          <li><a href="/testing-center">Testing Center</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/news">News</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/photos">Photos</a></li>
+          {% if current_user.is_authenticated %}
+            <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+          {% else %}
+            <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+            <li><a href="{{ url_for('auth.register') }}">Register</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+    </header>
+    {% block content %}{% endblock %}
+  </div>
+  <footer>
+    <div class="social-links">
+      <a href="https://www.facebook.com/BirdyPhillips" target="_blank">Facebook</a>
+      <a href="https://twitter.com/BirdyPhillips" target="_blank">Twitter</a>
+      <a href="https://www.instagram.com/BirdyPhillips" target="_blank">Instagram</a>
+      <a href="https://www.linkedin.com/company/birdyphillips" target="_blank">LinkedIn</a>
+    </div>
+    <div>
+      <p>Contact Us: (123) 456-7890</p>
+      <p>Location: 123 Birdy Street, Tech City, TX 12345</p>
+    </div>
+    <p>&copy; 2024 BirdyPhillips. All rights reserved.</p>
+  </footer>
+</body>
+</html>

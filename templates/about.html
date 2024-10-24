@@ -7,11 +7,11 @@
   <meta name="description" content="About page for BirdyPhillips.">
   <meta name="keywords" content="Flask, about, information, software development, veteran owned">
   <meta name="author" content="Andre Phillips">
-  <title>About | BirdyPhillips</title>
+  <title>About BirdyPhillips</title>
 
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> 
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"> 
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
     /* Basic styles for the page */
     body {
@@ -30,16 +30,16 @@
     h1 {
       font-size: 3.5rem;
       margin-bottom: 1rem;
-      font-family: 'Pacifico', cursive;
+      font-family: 'Roboto Mono', monospace; /* Apply technical-looking font */
       color: #00aaff;
       text-align: center;
-      padding: 20px 0; 
+      padding: 20px 0;
     }
 
     h2 {
-      text-align: center; 
-      color: #2c3e50; 
-      margin-top: 40px; 
+      text-align: center;
+      color: #2c3e50;
+      margin-top: 40px;
     }
 
     .box {
@@ -52,12 +52,12 @@
     }
 
     .about-content {
-      text-align: center; 
-      line-height: 1.6; 
+      text-align: center;
+      line-height: 1.6;
     }
 
     .about-content p {
-      text-align: justify; 
+      text-align: justify;
     }
 
     .team-section, .core-values-section {
@@ -69,11 +69,11 @@
 
     .team-member, .core-value {
       flex: 1;
-      min-width: 280px; 
+      min-width: 280px;
       padding: 20px;
       border: 1px solid #ddd;
       border-radius: 5px;
-      text-align: center; 
+      text-align: center;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       background-color: #ffffff;
       color: #2c3e50;
@@ -85,25 +85,25 @@
     }
 
     .team-photo {
-      width: 150px; 
+      width: 150px;
       height: 150px;
-      border-radius: 50%; 
-      object-fit: cover; 
-      margin-bottom: 15px; 
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
     }
 
     .card-content {
-      text-align: left; 
+      text-align: left;
     }
 
     .card-content h4 {
-      color: #1abc9c; 
+      color: #1abc9c;
     }
 
     footer {
       text-align: center;
       padding: 20px 0;
-      background-color: #f8f8f8; 
+      background-color: #f8f8f8;
       color: #2c3e50;
       position: relative;
       bottom: 0;
@@ -141,7 +141,7 @@
 </head>
 
 <body>
-  <div class="container"> 
+  <div class="container">
     <header>
       <nav>
         <ul>
@@ -154,11 +154,14 @@
           <li><a href="/about" class="active">About</a></li>
           <li><a href="/contact">Contact</a></li>
           <li><a href="/photos">Photos</a></li>
+          {% if current_user.is_authenticated %}
+            <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+          {% endif %}
         </ul>
       </nav>
     </header>
 
-    <h1>About BirdyPhillips</h1>
+    <h1>AboutUs</h1>
 
     <div class="box about-content">
       <p>Welcome to <strong>BirdyPhillips</strong>! Founded in 2022, we are a veteran-owned software development company dedicated to providing innovative IT solutions.</p>
@@ -210,3 +213,21 @@
         <h4>Integrity</h4>
         <p>We conduct our business with honesty and transparency, building trust with our clients.</p>
       </div>
+    </div>
+
+    <footer>
+      <div class="social-links">
+        <a href="https://www.facebook.com/BirdyPhillips" target="_blank">Facebook</a>
+        <a href="https://twitter.com/BirdyPhillips" target="_blank">Twitter</a>
+        <a href="https://www.instagram.com/BirdyPhillips" target="_blank">Instagram</a>
+        <a href="https://www.linkedin.com/company/birdyphillips" target="_blank">LinkedIn</a>
+      </div>
+      <div>
+        <p>Contact Us: (123) 456-7890</p>
+        <p>Location: 123 Birdy Street, Tech City, TX 12345</p>
+      </div>
+      <p>&copy; 2024 BirdyPhillips. All rights reserved.</p>
+    </footer>
+  </div>
+</body>
+</html>
