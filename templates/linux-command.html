@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .hero {
+            text-align: center;
+            padding: 100px 0;
+            background-color: #f8f8f8;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: #00aaff;
+        }
+        .hero p {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+        }
+        section {
+            padding: 40px 0;
+            text-align: center;
+        }
+        .box {
+            background-color: #f8f8f8;
+            color: #2c3e50;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .card {
+            background-color: #fff;
+            color: #2c3e50;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            flex: 1 1 300px;
+            max-width: 300px;
+        }
+        .link-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #00aaff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .link-button:hover {
+            background-color: #007acc;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        .collapsible {
+            background-color: #2c3e50;
+            color: white;
+            cursor: pointer;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+        .active, .collapsible:hover {
+            background-color: #555;
+        }
+        .content {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        pre {
+            background-color: #fff;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: "Courier New", Courier, monospace;
+            color: #d63384;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>Welcome to the Training Page</h1>
+        <p>Explore various training materials and resources.</p>
+        <a href="linux-command.html" class="link-button">Linux Commands</a>
+    </div>
+    <section>
+        <div class="box">
+            <h2>Training Modules</h2>
+            <div class="card-container">
+                <div class="card">
+                    <h3>Module 1</h3>
+                    <p>Introduction to Linux</p>
+                </div>
+                <div class="card">
+                    <h3>Module 2</h3>
+                    <p>Advanced Linux Commands</p>
+                </div>
+                <div class="card">
+                    <h3>Module 3</h3>
+                    <p>Networking in Linux</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <button class="collapsible">File Management</button>
+    <div class="content">
+        <pre><code>
+ls          # List directory contents
+cd          # Change directory
+pwd         # Print working directory
+mkdir       # Create a new directory
+rmdir       # Remove an empty directory
+cp          # Copy files or directories
+mv          # Move or rename files or directories
+rm          # Remove files or directories
+touch       # Create an empty file or update the timestamp of an existing file
+cat         # Concatenate and display file content
+more        # View file content one screen at a time
+less        # View file content with backward and forward navigation
+head        # Display the first part of a file
+tail        # Display the last part of a file
+find        # Search for files in a directory hierarchy
+grep        # Search text using patterns
+chmod       # Change file permissions
+chown       # Change file owner and group
+ln          # Create hard and symbolic links
+        </code></pre>
+    </div>
+
+    <button class="collapsible">System Information</button>
+    <div class="content">
+        <pre><code>
+uname       # Print system information
+uname -a    # Print all system information
+df          # Report file system disk space usage
+du          # Estimate file space usage
+free        # Display memory usage
+top         # Display tasks and system resource usage
+htop        # Interactive process viewer
+uptime      # Show how long the system has been running
+dmesg       # Print kernel ring buffer messages
+hostname    # Show or set the system's hostname
+        </code></pre>
+    </div>
+
+    <button class="collapsible">Process Management</button>
+    <div class="content">
+        <pre><code>
+ps          # Report a snapshot of current processes
+ps aux      # Detailed information about all running processes
+kill        # Send a signal to a process
+killall     # Kill processes by name
+pkill       # Send a signal to processes by name
+bg          # Resume a suspended job in the background
+fg          # Bring a job to the foreground
+jobs        # List active jobs
+        </code></pre>
+    </div>
+
+    <button class="collapsible">Networking</button>
+    <div class="content">
+        <pre><code>
+ifconfig    # Configure network interfaces
+ip          # Show/manipulate routing, devices, policy routing, and tunnels
+ping        # Send ICMP ECHO_REQUEST to network hosts
+netstat     # Print network connections, routing tables, interface statistics, masquerade connections, and multicast memberships
+ss          # Another utility to investigate sockets
+traceroute  # Print the route packets take to the network host
+wget        # Non-interactive network downloader
+curl        # Transfer data from or to a server
+scp         # Secure copy (remote file copy program)
+ssh         # OpenSSH SSH client (remote login program)
+        </code></pre>
+    </div>
+
+    <button class="collapsible">Package Management (Debian-based systems)</button>
+    <div class="content">
+        <pre><code>
+apt-get update      # Update package lists
+apt-get upgrade     # Upgrade all packages
+apt-get install     # Install a package
+apt-get remove      # Remove a package
+apt-get autoremove  # Remove automatically installed packages no longer needed
+apt-get clean       # Clean up the local repository of retrieved package files
+dpkg -i             # Install a package file
+dpkg -r             # Remove a package
+        </code></pre>
+    </div>
+
+    <button class="collapsible">Package Management (Red Hat-based systems)</button>
+    <div class="content">
+        <pre><code>
+yum update          # Update package lists and upgrade all packages
+yum install         # Install a package
+yum remove          # Remove a package
+yum clean all       # Clean up the local repository of retrieved package files
+rpm -i              # Install a package file
+rpm -e              # Remove a package
+        </code></pre>
+    </div>
+
+    <button class="collapsible">File Compression</button>
+    <div class="content">
+        <pre><code>
+tar -cvf archive.tar file1 file2  # Create a tar archive
+tar -xvf archive.tar              # Extract a tar archive
+gzip file                         # Compress a file using gzip
+gunzip file.gz                    # Decompress a gzip file
+zip archive.zip file1 file2       # Create a zip archive
+unzip archive.zip                 # Extract a zip archive
+        </code></pre>
+    </div>
+
+    <button class="collapsible">User Management</button>
+    <div class="content">
+        <pre><code>
+adduser        # Add a new user
+userdel        # Delete a user
+usermod        # Modify a user account
+passwd         # Change user password
+groupadd       # Add a new group
+groupdel       # Delete a group
+groups         # Show group memberships
+        </code></pre>
+    </div>
+
+    <button class="collapsible">Disk Management</button>
+    <div class="content">
+        <pre><code>
+fdisk          # Partition table manipulator for Linux
+mkfs           # Build a Linux file system
+mount          # Mount a file system
+umount         # Unmount a file system
+fsck           # File system consistency check and repair
+        </code></pre>
+    </div>
+
+    <button class="collapsible">System Shutdown and Reboot</button>
+    <div class="content">
+        <pre><code>
+shutdown now   # Shutdown the system immediately
+shutdown -r now # Reboot the system immediately
+reboot         # Reboot the system
+halt           # Halt the system
+poweroff       # Power off the system
+        </code></pre>
+    </div>
+
+    <script>
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                } else {
+                    content.style.display = "block";
+                }
+            });
+        }
+    </script>
+</body>
+</html>

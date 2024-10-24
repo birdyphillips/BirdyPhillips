@@ -1,40 +1,28 @@
 from flask import Flask, request, redirect, url_for, render_template
-from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager
+from extensions import db, login_manager  # Import the existing SQLAlchemy and LoginManager instances
+from auth import LoginForm, RegistrationForm  # Import the forms from auth.py
 import os
 
 # Initialize the Flask application
 app = Flask(__name__)
-
-# Configure the secret key for session management
-# Use environment variables for stronger security
-app.config['SECRET_KEY'] = os.getenv('FLASK_SECRET_KEY', 'your_default_fallback_secret_key')
-
-# Configure the SQLAlchemy database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
-
-# Configure the upload folder for storing uploaded files
-app.config['UPLOAD_FOLDER'] = os.path.join('static', 'uploads')
+app.config.from_object('config.Config')
 
 # Initialize the SQLAlchemy database instance
-db = SQLAlchemy(app)
+db.init_app(app)
 
 # Initialize the Flask-Login manager
-login_manager = LoginManager(app)
+login_manager.init_app(app)
 login_manager.login_view = 'auth.login'  # Set the login view for unauthorized users
 
 # Import and register blueprints
 from photo_routes import photo_bp  # Import the photo routes blueprint
 from about import about_bp  # Import the about routes blueprint
-from auth import auth_bp, login_manager as auth_login_manager  # Import the auth blueprint and related instances
+from auth import auth_bp  # Import the auth blueprint
 
 # Register the blueprints
 app.register_blueprint(photo_bp, url_prefix='/photos')
 app.register_blueprint(about_bp)
 app.register_blueprint(auth_bp, url_prefix='/auth')
-
-# Initialize extensions
-auth_login_manager.init_app(app)
 
 # Ensure the upload folder exists
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
@@ -96,6 +84,19 @@ def contact():
 @app.route('/news')
 def news():
     return render_template('news.html')  # Render the news.html template
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    login_form = LoginForm()
+    register_form = RegistrationForm()
+    if request.method == 'POST':
+        if login_form.validate_on_submit():
+            # Handle login logic here
+            pass
+        elif register_form.validate_on_submit():
+            # Handle registration logic here
+            pass
+    return render_template('login.html', login_form=login_form, register_form=register_form)  # Render the login.html template
 
 if __name__ == '__main__':
     with app.app_context():
