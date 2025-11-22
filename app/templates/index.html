@@ -73,19 +73,22 @@
 
         .header-actions {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .btn {
-            padding: 12px 28px;
+            padding: 12px 24px;
             background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
-            border-radius: 25px;
+            border-radius: 8px;
             text-transform: uppercase;
             font-weight: 700;
             text-decoration: none;
             color: #000;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             transition: all 0.3s ease;
             font-size: 13px;
             letter-spacing: 1px;
@@ -95,7 +98,7 @@
         }
 
         .btn:hover {
-            transform: translateY(-3px);
+            transform: translateY(-2px);
             box-shadow: 0 6px 25px rgba(243, 156, 18, 0.5);
             background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
         }
@@ -103,14 +106,27 @@
         .btn-secondary {
             background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
             color: #ecf0f1;
+            box-shadow: 0 4px 15px rgba(52, 73, 94, 0.3);
         }
 
         .btn-secondary:hover {
             background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+            box-shadow: 0 6px 25px rgba(52, 73, 94, 0.5);
+        }
+
+        .btn-blog {
+            background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
+        }
+
+        .btn-blog:hover {
+            background: linear-gradient(135deg, #8e44ad 0%, #7d3c98 100%);
+            box-shadow: 0 6px 25px rgba(155, 89, 182, 0.5);
         }
 
         .btn-icon {
-            margin-right: 5px;
+            font-size: 16px;
         }
 
         /* Flash Messages */
@@ -388,12 +404,24 @@
                 <h1 class="brand-title">📸 BirdyPhillips</h1>
             </div>
             <div class="header-actions">
-                <a href="{{ url_for('blog.blog_index') }}" class="btn"><span class="btn-icon">📝</span>Blog</a>
+                <a href="{{ url_for('blog.blog_index') }}" class="btn btn-blog">
+                    <span class="btn-icon">📝</span>
+                    <span>Blog</span>
+                </a>
                 {% if session.logged_in %}
-                    <a href="{{ url_for('media.upload') }}" class="btn"><span class="btn-icon">⬆️</span>Upload</a>
-                    <a href="{{ url_for('auth.logout') }}" class="btn btn-secondary"><span class="btn-icon">🚪</span>Logout</a>
+                    <a href="{{ url_for('media.upload') }}" class="btn">
+                        <span class="btn-icon">⬆️</span>
+                        <span>Upload</span>
+                    </a>
+                    <a href="{{ url_for('auth.logout') }}" class="btn btn-secondary">
+                        <span class="btn-icon">🚪</span>
+                        <span>Logout</span>
+                    </a>
                 {% else %}
-                    <a href="{{ url_for('auth.login') }}" class="btn btn-secondary"><span class="btn-icon">🔐</span>Admin</a>
+                    <a href="{{ url_for('auth.login') }}" class="btn btn-secondary">
+                        <span class="btn-icon">🔐</span>
+                        <span>Admin</span>
+                    </a>
                 {% endif %}
             </div>
         </div>
