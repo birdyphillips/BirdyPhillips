@@ -1,0 +1,16 @@
+[Unit]
+Description=BirdyPhillips Flask Web Application
+After=network.target
+
+[Service]
+User=pi
+Group=www-data
+WorkingDirectory=/home/pi/Projects/BirdyPhillips
+Environment="PATH=/home/pi/Projects/BirdyPhillips/venv/bin"
+Environment="FLASK_ENV=production"
+ExecStart=/usr/bin/python3 /home/pi/Projects/BirdyPhillips/run.py
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

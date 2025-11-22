@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Image | BirdyPhillips</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+    <header>
+        <h1 class="brand-title">Upload Image to BirdyPhillips</h1>
+    </header>
+
+    <form action="{{ url_for('media.upload') }}" method="POST" enctype="multipart/form-data">
+        <label for="file">Choose file to upload</label>
+        <input type="file" name="file" id="file" required>
+        <button type="submit">Upload</button>
+    </form>
+
+    <a href="{{ url_for('main.home') }}" class="btn btn-secondary">Back to Gallery</a>
+
+</body>
+</html>
