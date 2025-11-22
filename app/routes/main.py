@@ -105,7 +105,7 @@ def admin_dashboard():
                          total_blogs=total_blogs,
                          published_blogs=published_blogs,
                          draft_blogs=draft_blogs,
-                         blog_data=blog_data)
+                         blog_data=blog_posts)
 
 
 @main.route('/sync')
