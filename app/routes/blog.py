@@ -36,7 +36,16 @@ def parse_essay(filename):
         md_content = content
     
     # Convert markdown to HTML
-    html_content = markdown.markdown(md_content, extensions=['fenced_code', 'codehilite', 'tables'])
+    html_content = markdown.markdown(
+        md_content, 
+        extensions=[
+            'fenced_code', 
+            'codehilite', 
+            'tables',
+            'nl2br',  # Convert newlines to <br> tags
+            'sane_lists'  # Better list handling
+        ]
+    )
     
     # Normalize date to datetime object
     date_value = frontmatter.get('date', datetime.now())
@@ -211,7 +220,7 @@ def edit_post(slug):
             f.write(file_content)
         
         flash(f'✓ Blog post "{title}" updated successfully!', 'success')
-        return redirect(url_for('main.admin_dashboard'))
+        return redirect(url_for('blog.blog_index'))
     
     # GET request - load existing content
     essay = parse_essay(essay_file)
