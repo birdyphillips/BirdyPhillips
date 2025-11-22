@@ -38,11 +38,29 @@ def parse_essay(filename):
     # Convert markdown to HTML
     html_content = markdown.markdown(md_content, extensions=['fenced_code', 'codehilite', 'tables'])
     
+    # Normalize date to datetime object
+    date_value = frontmatter.get('date', datetime.now())
+    if isinstance(date_value, str):
+        try:
+            # Try parsing common date formats
+            date_value = datetime.strptime(date_value, '%Y-%m-%d')
+        except ValueError:
+            try:
+                date_value = datetime.strptime(date_value, '%Y-%m-%d %H:%M:%S')
+            except ValueError:
+                date_value = datetime.now()
+    elif not isinstance(date_value, datetime):
+        # If it's a date object, convert to datetime
+        try:
+            date_value = datetime.combine(date_value, datetime.min.time())
+        except:
+            date_value = datetime.now()
+    
     return {
         'filename': filename,
         'slug': filename.replace('.md', ''),
         'title': frontmatter.get('title', 'Untitled'),
-        'date': frontmatter.get('date', datetime.now()),
+        'date': date_value,
         'author': frontmatter.get('author', 'BirdyPhillips'),
         'tags': frontmatter.get('tags', []),
         'published': frontmatter.get('published', True),
