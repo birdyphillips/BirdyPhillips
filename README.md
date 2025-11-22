@@ -112,11 +112,7 @@ Environment variables (optional, defaults in `config/config.py`):
 | `FLASK_ENV` | Environment (`development` or `production`) | `development` |
 | `PORT` | Server port | `5000` |
 
-**Default Admin Credentials**:
-- Username: `admin`
-- Password: `Andre4301$$`
-
-⚠️ **Change these immediately in production!**
+⚠️ **Default admin user is created on first run. Change credentials immediately in production!**
 
 ## Usage
 
