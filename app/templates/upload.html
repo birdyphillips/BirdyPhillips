@@ -161,17 +161,39 @@
 
     <div class="upload-container">
         <div class="upload-header">
-            <h1>📸 Upload Image</h1>
+            <h1>📸 Upload Images</h1>
+            <p style="color: #b8b8b8; margin-top: 10px;">Select one or multiple images to upload</p>
         </div>
         
         <div class="upload-form">
             <form action="{{ url_for('media.upload') }}" method="POST" enctype="multipart/form-data">
-                <label for="file">Choose file to upload</label>
-                <input type="file" name="file" id="file" required>
-                <button type="submit">Upload Image</button>
+                <label for="files">Choose files to upload</label>
+                <input type="file" name="files" id="files" multiple required accept="image/*">
+                <div id="file-list" style="margin: 15px 0; color: #b8b8b8; font-size: 14px;"></div>
+                <button type="submit">Upload Images</button>
             </form>
         </div>
     </div>
+
+    <script>
+        // Show selected files
+        document.getElementById('files').addEventListener('change', function(e) {
+            const fileList = document.getElementById('file-list');
+            const files = e.target.files;
+            
+            if (files.length > 0) {
+                let html = `<strong style="color: #f39c12;">${files.length} file(s) selected:</strong><ul style="margin-top: 10px; list-style: none;">`;
+                for (let i = 0; i < files.length; i++) {
+                    const size = (files[i].size / 1024 / 1024).toFixed(2);
+                    html += `<li style="padding: 5px 0;">📷 ${files[i].name} (${size} MB)</li>`;
+                }
+                html += '</ul>';
+                fileList.innerHTML = html;
+            } else {
+                fileList.innerHTML = '';
+            }
+        });
+    </script>
 
 </body>
 </html>

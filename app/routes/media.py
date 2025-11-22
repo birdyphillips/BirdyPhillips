@@ -19,50 +19,90 @@ def upload():
         return redirect(url_for('auth.login'))
 
     if request.method == 'POST':
-        if 'file' not in request.files:
-            flash('No file selected', 'error')
+        if 'files' not in request.files:
+            flash('No files selected', 'error')
             return redirect(request.url)
         
-        file = request.files['file']
+        files = request.files.getlist('files')
         
-        if file.filename == '':
-            flash('No file selected', 'error')
+        if not files or all(f.filename == '' for f in files):
+            flash('No files selected', 'error')
             return redirect(request.url)
         
-        if file and allowed_file(file.filename):
-            original_filename = file.filename
-            filename = secure_filename(file.filename)
+        uploaded_files = []
+        total_size = 0
+        errors = []
+        
+        for file in files:
+            if file.filename == '':
+                continue
+                
+            if file and allowed_file(file.filename):
+                try:
+                    original_filename = file.filename
+                    filename = secure_filename(file.filename)
+                    
+                    # Check if filename already exists in database
+                    existing_media = Media.query.filter_by(filename=filename).first()
+                    if existing_media:
+                        name, ext = os.path.splitext(filename)
+                        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+                        filename = f"{name}_{timestamp}{ext}"
+                    
+                    filepath = os.path.join(current_app.config['UPLOAD_FOLDER'], filename)
+                    file.save(filepath)
+                    
+                    # Get file info
+                    file_size = os.path.getsize(filepath)
+                    file_type = filename.rsplit('.', 1)[1].lower()
+                    
+                    # Save to database
+                    new_media = Media(
+                        filename=filename,
+                        original_filename=original_filename,
+                        file_type=file_type,
+                        file_size=file_size,
+                        uploaded_by=session.get('username')
+                    )
+                    db.session.add(new_media)
+                    
+                    uploaded_files.append({
+                        'filename': filename,
+                        'original_filename': original_filename,
+                        'size': file_size
+                    })
+                    total_size += file_size
+                except Exception as e:
+                    errors.append(f"{file.filename}: {str(e)}")
+            else:
+                errors.append(f"{file.filename}: Invalid file type")
+        
+        # Commit all uploads
+        if uploaded_files:
+            try:
+                db.session.commit()
+            except Exception as e:
+                db.session.rollback()
+                flash(f'Database error: {str(e)}', 'error')
+                return redirect(request.url)
+        
+        # Show results
+        if uploaded_files:
+            if len(uploaded_files) == 1:
+                # Single file - redirect to splash page
+                return redirect(url_for('media.upload_success', filename=uploaded_files[0]['filename']))
+            else:
+                # Multiple files - redirect to multi-upload success page
+                filenames = ','.join([f['filename'] for f in uploaded_files])
+                return redirect(url_for('media.upload_success_multi', filenames=filenames, count=len(uploaded_files), total_size=total_size))
+        
+        if errors:
+            flash('Upload errors: ' + '; '.join(errors), 'error')
             
-            # Check if filename already exists in database
-            existing_media = Media.query.filter_by(filename=filename).first()
-            if existing_media:
-                name, ext = os.path.splitext(filename)
-                timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-                filename = f"{name}_{timestamp}{ext}"
+        if not uploaded_files:
+            flash('No files were uploaded successfully', 'error')
             
-            filepath = os.path.join(current_app.config['UPLOAD_FOLDER'], filename)
-            file.save(filepath)
-            
-            # Get file info
-            file_size = os.path.getsize(filepath)
-            file_type = filename.rsplit('.', 1)[1].lower()
-            
-            # Save to database
-            new_media = Media(
-                filename=filename,
-                original_filename=original_filename,
-                file_type=file_type,
-                file_size=file_size,
-                uploaded_by=session.get('username')
-            )
-            db.session.add(new_media)
-            db.session.commit()
-            
-            # Redirect to splash page with uploaded image info
-            return redirect(url_for('media.upload_success', filename=filename))
-        else:
-            flash('Invalid file type. Allowed: PNG, JPG, JPEG, GIF, WEBP, BMP', 'error')
-            return redirect(request.url)
+        return redirect(request.url)
     
     return render_template('upload.html')
 
@@ -87,6 +127,41 @@ def upload_success(filename):
                          file_size=format_file_size(media_item.file_size),
                          file_type=media_item.file_type.upper(),
                          upload_time=media_item.upload_time.strftime('%B %d, %Y at %I:%M %p'))
+
+
+@media.route('/upload/success/multi')
+def upload_success_multi():
+    """Show multi-upload success page."""
+    if 'logged_in' not in session or not session['logged_in']:
+        flash('Please login first.', 'error')
+        return redirect(url_for('auth.login'))
+    
+    filenames_str = request.args.get('filenames', '')
+    count = request.args.get('count', 0, type=int)
+    total_size = request.args.get('total_size', 0, type=int)
+    
+    if not filenames_str:
+        flash('No files uploaded', 'error')
+        return redirect(url_for('main.admin_dashboard'))
+    
+    filenames = filenames_str.split(',')
+    
+    # Get media info from database
+    uploaded_images = []
+    for filename in filenames:
+        media_item = Media.query.filter_by(filename=secure_filename(filename)).first()
+        if media_item:
+            uploaded_images.append({
+                'filename': media_item.filename,
+                'original_filename': media_item.original_filename,
+                'file_size': format_file_size(media_item.file_size),
+                'file_type': media_item.file_type.upper()
+            })
+    
+    return render_template('upload_success_multi.html',
+                         images=uploaded_images,
+                         count=count,
+                         total_size=format_file_size(total_size))
 
 
 @media.route('/delete/<filename>', methods=['POST'])
