@@ -216,6 +216,13 @@
             padding: 0;
         }
 
+        /* APA References formatting with hanging indent */
+        .article-content .reference-item {
+            margin-bottom: 20px;
+            padding-left: 2em;
+            text-indent: -2em;
+        }
+
         @media (max-width: 768px) {
             .article-title {
                 font-size: 32px;
@@ -225,6 +232,37 @@
             }
         }
     </style>
+    <script>
+        // Add hanging indent to references after page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const content = document.querySelector('.article-content');
+            if (!content) return;
+            
+            // Find the References heading
+            const headings = content.querySelectorAll('h2');
+            let referencesHeading = null;
+            
+            headings.forEach(h => {
+                if (h.textContent.toLowerCase().includes('reference')) {
+                    referencesHeading = h;
+                }
+            });
+            
+            if (referencesHeading) {
+                // Get all paragraphs after References heading
+                let nextElement = referencesHeading.nextElementSibling;
+                while (nextElement) {
+                    if (nextElement.tagName === 'P') {
+                        nextElement.classList.add('reference-item');
+                    } else if (nextElement.tagName === 'H2' || nextElement.tagName === 'H1') {
+                        // Stop if we hit another heading
+                        break;
+                    }
+                    nextElement = nextElement.nextElementSibling;
+                }
+            }
+        });
+    </script>
 </head>
 <body>
     <nav>

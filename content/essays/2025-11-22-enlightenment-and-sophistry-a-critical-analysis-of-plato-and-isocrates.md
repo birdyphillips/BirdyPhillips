@@ -1,5 +1,5 @@
 ---
-author: admin
+author: Andre Phillips
 date: '2025-11-22'
 published: true
 tags:
