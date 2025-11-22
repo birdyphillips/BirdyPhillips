@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="BirdyPhillips Image Gallery - Professional photography showcase">
-    <title>BirdyPhillips Gallery</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <meta name="description" content="BirdyPhillips - Photography, Art, and Thoughts">
+    <title>BirdyPhillips - Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -15,591 +14,365 @@
         }
 
         body {
+            font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 50%, #16213e 100%);
             background-attachment: fixed;
-            font-family: 'Orbitron', sans-serif;
             color: white;
             min-height: 100vh;
         }
 
-        /* Header Styles */
-        header {
-            background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 100%);
+        nav {
+            background: linear-gradient(180deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.8) 100%);
             backdrop-filter: blur(10px);
-            padding: 25px 20px;
-            box-shadow: 0 4px 30px rgba(243, 156, 18, 0.2);
-            position: sticky;
+            padding: 20px 40px;
+            position: fixed;
+            width: 100%;
             top: 0;
             z-index: 1000;
             border-bottom: 2px solid #f39c12;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
         }
 
-        .header-content {
+        .nav-container {
             max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 20px;
         }
 
-        .brand-section {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .brand-title {
-            font-size: 32px;
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 28px;
+            font-weight: 900;
             background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-weight: 900;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: 2px;
         }
 
-        .stats-badge {
-            background: rgba(243, 156, 18, 0.2);
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 12px;
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s;
             border: 1px solid rgba(243, 156, 18, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-link:hover {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(243, 156, 18, 0.4);
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 40px 60px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 72px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 24px;
+            color: #95a5a6;
+            margin-bottom: 40px;
+            font-weight: 300;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .cta-button {
+            padding: 18px 40px;
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-primary {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            color: #000;
+            box-shadow: 0 6px 30px rgba(243, 156, 18, 0.4);
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px rgba(243, 156, 18, 0.6);
+        }
+
+        .cta-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(243, 156, 18, 0.5);
+        }
+
+        .cta-secondary:hover {
+            background: rgba(243, 156, 18, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .features {
+            padding: 80px 40px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 60px;
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid rgba(243, 156, 18, 0.2);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #f39c12;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(243, 156, 18, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+
+        .feature-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
             color: #f39c12;
         }
 
-        .header-actions {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-            flex-wrap: wrap;
+        .feature-description {
+            color: #bdc3c7;
+            line-height: 1.6;
         }
 
-        .nav-group {
-            display: flex;
-            gap: 12px;
-            flex-wrap: nowrap;
-            align-items: stretch;
-        }
-
-        .nav-group .btn {
-            min-width: 110px;
-            justify-content: center;
-        }
-
-        .btn {
-            padding: 12px 24px;
-            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
-            border-radius: 8px;
-            text-transform: uppercase;
-            font-weight: 700;
-            text-decoration: none;
-            color: #000;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-            font-size: 13px;
-            letter-spacing: 1px;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3);
-            white-space: nowrap;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(243, 156, 18, 0.5);
-            background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
-        }
-
-        .btn-secondary {
-            background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
-            color: #ecf0f1;
-            box-shadow: 0 4px 15px rgba(52, 73, 94, 0.3);
-        }
-
-        .btn-secondary:hover {
-            background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
-            box-shadow: 0 6px 25px rgba(52, 73, 94, 0.5);
-        }
-
-        .btn-blog {
-            background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
-            color: #fff;
-            box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
-        }
-
-        .btn-blog:hover {
-            background: linear-gradient(135deg, #8e44ad 0%, #7d3c98 100%);
-            box-shadow: 0 6px 25px rgba(155, 89, 182, 0.5);
-        }
-
-        .btn-icon {
-            font-size: 16px;
-        }
-
-        /* Flash Messages */
-        .flash-container {
-            max-width: 1400px;
-            margin: 20px auto;
-            padding: 0 20px;
-        }
-
-        .flash-message {
-            padding: 15px 20px;
-            margin-bottom: 15px;
-            border-radius: 10px;
-            font-size: 14px;
-            animation: slideDown 0.4s ease-out;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-
-        .flash-success {
-            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
-            border-left: 4px solid #1e8449;
-        }
-
-        .flash-error {
-            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
-            border-left: 4px solid #922b21;
-        }
-
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Slideshow */
-        .slideshow-section {
-            max-width: 1400px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
-
-        .slideshow-container {
-            position: relative;
-            width: 100%;
-            height: 500px;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 8px 40px rgba(0,0,0,0.5);
-            border: 2px solid rgba(243, 156, 18, 0.3);
-        }
-
-        .mySlides {
-            display: none;
-            width: 100%;
-            height: 100%;
-        }
-
-        .slide-image {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            object-position: center;
-            transition: transform 0.3s ease;
-            background: #000;
-        }
-
-        .slide-image:hover {
-            transform: scale(1.02);
-        }
-
-        .empty-gallery {
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, rgba(52, 73, 94, 0.3) 0%, rgba(44, 62, 80, 0.3) 100%);
-            padding: 60px 40px;
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 40px;
             text-align: center;
+            border-top: 2px solid #f39c12;
         }
 
-        .empty-gallery-icon {
-            font-size: 80px;
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-text {
+            color: #95a5a6;
             margin-bottom: 20px;
-            opacity: 0.5;
         }
 
-        .empty-gallery p {
-            font-size: 20px;
-            color: #95a5a6;
-            margin-bottom: 10px;
-        }
-
-        /* Gallery Section */
-        .gallery-section {
-            max-width: 1400px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        .gallery-header {
+        .social-links {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
+            gap: 20px;
+            justify-content: center;
             flex-wrap: wrap;
-            gap: 15px;
         }
 
-        .gallery-title {
-            font-size: 28px;
-            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 700;
+        .social-link {
+            color: #f39c12;
+            text-decoration: none;
+            font-size: 18px;
+            transition: all 0.3s;
         }
 
-        .gallery-info {
-            color: #95a5a6;
-            font-size: 14px;
-        }
-
-        .gallery-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
-        }
-
-        .image-item {
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            background: rgba(255,255,255,0.05);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(243, 156, 18, 0.2);
-        }
-
-        .image-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 40px rgba(243, 156, 18, 0.3);
-            border-color: rgba(243, 156, 18, 0.5);
-        }
-
-        .gallery-image {
-            width: 100%;
-            height: 280px;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-
-        .image-item:hover .gallery-image {
+        .social-link:hover {
+            color: #e67e22;
             transform: scale(1.1);
         }
 
-        .image-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
-            padding: 15px;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .image-item:hover .image-overlay {
-            transform: translateY(0);
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .image-filename {
-            font-size: 12px;
-            color: #ecf0f1;
-            margin-bottom: 5px;
-            word-break: break-all;
-        }
-
-        .image-meta {
-            font-size: 11px;
-            color: #95a5a6;
-        }
-
-        .image-actions {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .image-item:hover .image-actions {
-            opacity: 1;
-        }
-
-        .delete-btn {
-            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
-            color: white;
-            border: none;
-            padding: 10px 18px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
-        }
-
-        .delete-btn:hover {
-            background: linear-gradient(135deg, #c0392b 0%, #922b21 100%);
-            transform: scale(1.05);
-        }
-
-        /* Footer */
-        footer {
-            background: rgba(0,0,0,0.5);
-            padding: 30px 20px;
-            text-align: center;
-            margin-top: 60px;
-            border-top: 2px solid rgba(243, 156, 18, 0.3);
-        }
-
-        footer p {
-            color: #95a5a6;
-            font-size: 13px;
-        }
-
-        /* Loading Animation */
-        .loading {
-            display: none;
-            text-align: center;
-            padding: 40px;
-        }
-
-        .spinner {
-            width: 50px;
-            height: 50px;
-            margin: 0 auto 20px;
-            border: 4px solid rgba(243, 156, 18, 0.2);
-            border-top: 4px solid #f39c12;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Responsive Design */
         @media (max-width: 768px) {
-            .brand-title { font-size: 22px; }
-            .slideshow-container { height: 300px; }
-            .gallery-container { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
-            .image-item .gallery-image { height: 200px; }
-            .header-content { justify-content: center; text-align: center; }
-            .gallery-header { flex-direction: column; text-align: center; }
-        }
+            .hero-title {
+                font-size: 48px;
+            }
 
-        @media (max-width: 480px) {
-            .brand-title { font-size: 18px; letter-spacing: 2px; }
-            .btn { padding: 10px 20px; font-size: 11px; }
-            .slideshow-container { height: 250px; }
-            .gallery-container { grid-template-columns: 1fr; }
+            .hero-subtitle {
+                font-size: 18px;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-
-    <header>
-        <div class="header-content">
-            <div class="brand-section">
-                <h1 class="brand-title">📸 BirdyPhillips</h1>
-            </div>
-            <div class="header-actions">
+    <nav>
+        <div class="nav-container">
+            <div class="logo">BIRDYPHILLIPS</div>
+            <div class="nav-links">
+                <a href="{{ url_for('main.home') }}" class="nav-link">Home</a>
+                <a href="{{ url_for('main.gallery') }}" class="nav-link">Gallery</a>
+                <a href="{{ url_for('blog.blog_index') }}" class="nav-link">Blog</a>
                 {% if session.logged_in %}
-                    <div class="nav-group">
-                        <a href="{{ url_for('blog.blog_index') }}" class="btn btn-blog">
-                            <span class="btn-icon">📝</span>
-                            <span>Blog</span>
-                        </a>
-                        <a href="{{ url_for('main.admin_dashboard') }}" class="btn btn-secondary">
-                            <span class="btn-icon">🎛️</span>
-                            <span>Admin</span>
-                        </a>
-                        <a href="{{ url_for('auth.logout') }}" class="btn btn-secondary">
-                            <span class="btn-icon">🚪</span>
-                            <span>Logout</span>
-                        </a>
-                    </div>
+                    <a href="{{ url_for('main.admin_dashboard') }}" class="nav-link">Admin</a>
+                    <a href="{{ url_for('auth.logout') }}" class="nav-link">Logout</a>
                 {% else %}
-                    <div class="nav-group">
-                        <a href="{{ url_for('blog.blog_index') }}" class="btn btn-blog">
-                            <span class="btn-icon">📝</span>
-                            <span>Blog</span>
-                        </a>
-                        <a href="{{ url_for('auth.login') }}" class="btn btn-secondary">
-                            <span class="btn-icon">🔐</span>
-                            <span>Admin</span>
-                        </a>
-                    </div>
+                    <a href="{{ url_for('auth.login') }}" class="nav-link">Login</a>
                 {% endif %}
             </div>
         </div>
-    </header>
+    </nav>
 
-    <div class="flash-container">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                {% for category, message in messages %}
-                    <div class="flash-message flash-{{ category }}">
-                        <span>{{ '✓' if category == 'success' else '⚠' }}</span>
-                        {{ message }}
-                    </div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
-    </div>
-
-    <section class="slideshow-section">
-        <div class="slideshow-container">
-            {% if images and images|length > 0 %}
-                {% for image in images %}
-                    <div class="mySlides fade">
-                        <img src="{{ url_for('media.uploaded_file', filename=image) }}" 
-                             class="slide-image" 
-                             alt="{{ image }}" 
-                             loading="lazy">
-                    </div>
-                {% endfor %}
-            {% else %}
-                <div class="mySlides fade">
-                    <div class="empty-gallery">
-                        <div class="empty-gallery-icon">🖼️</div>
-                        <p>Your gallery is empty</p>
-                        <p style="font-size: 14px; color: #7f8c8d;">Upload your first image to get started!</p>
-                        {% if not session.logged_in %}
-                        <a href="{{ url_for('auth.login') }}" class="btn" style="margin-top: 20px;">Login to Upload</a>
-                        {% endif %}
-                    </div>
-                </div>
-            {% endif %}
-        </div>
-    </section>
-
-    {% if images and images|length > 0 %}
-    <section class="gallery-section">
-        <div class="gallery-header">
-            <h2 class="gallery-title">✨ Gallery Collection</h2>
-            <div class="gallery-info">
-                Displaying {{ total_images }} {{ 'image' if total_images == 1 else 'images' }} • {{ total_size }} total
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">BIRDYPHILLIPS</h1>
+            <p class="hero-subtitle">Photography • Art • Stories</p>
+            <div class="hero-cta">
+                <a href="{{ url_for('main.gallery') }}" class="cta-button cta-primary">
+                    View Gallery
+                </a>
+                <a href="{{ url_for('blog.blog_index') }}" class="cta-button cta-secondary">
+                    Read Blog
+                </a>
             </div>
         </div>
-        
-        <div class="gallery-container">
-            {% for image in images %}
-                <div class="image-item">
-                    <img src="{{ url_for('media.uploaded_file', filename=image) }}" 
-                         alt="{{ image }}" 
-                         class="gallery-image" 
-                         loading="lazy">
-                    
-                    <div class="image-overlay">
-                        <div class="image-filename">{{ image }}</div>
-                        {% for info in image_data %}
-                            {% if info.name == image %}
-                            <div class="image-meta">{{ info.size_mb }} MB • {{ info.modified }}</div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                    
-                    {% if session.logged_in %}
-                        <div class="image-actions">
-                            <form action="{{ url_for('media.delete_image', filename=image) }}" 
-                                  method="POST" 
-                                  style="display:inline;" 
-                                  onsubmit="return confirm('Delete {{ image }}?');">
-                                <button type="submit" class="delete-btn">🗑️ Delete</button>
-                            </form>
-                        </div>
-                    {% endif %}
+    </section>
+
+    <section class="features">
+        <div class="features-container">
+            <h2 class="section-title">What You'll Find</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📸</div>
+                    <h3 class="feature-title">Photography Gallery</h3>
+                    <p class="feature-description">
+                        Explore a curated collection of stunning photographs capturing moments, 
+                        emotions, and beauty from around the world.
+                    </p>
                 </div>
-            {% endfor %}
+                <div class="feature-card">
+                    <div class="feature-icon">📝</div>
+                    <h3 class="feature-title">Blog & Essays</h3>
+                    <p class="feature-description">
+                        Read thoughtful essays and stories about photography, art, life, 
+                        and creative inspiration.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3 class="feature-title">Visual Art</h3>
+                    <p class="feature-description">
+                        Discover original artwork and creative expressions that blend 
+                        photography with artistic vision.
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
-    {% endif %}
 
     <footer>
-        <p>🎨 BirdyPhillips Image Gallery &copy; 2025 • Made with ❤️</p>
-        <p style="margin-top: 10px; font-size: 11px;">Powered by Flask • Hosted on Raspberry Pi</p>
+        <div class="footer-content">
+            <p class="footer-text">
+                © 2025 BirdyPhillips. All rights reserved.
+            </p>
+            <div class="social-links">
+                <a href="#" class="social-link">Contact</a>
+                <a href="#" class="social-link">Instagram</a>
+                <a href="#" class="social-link">Twitter</a>
+            </div>
+        </div>
     </footer>
-
-    <script>
-        let slideIndex = 0;
-
-        function showSlides() {
-            let slides = document.getElementsByClassName("mySlides");
-            if (!slides || slides.length === 0) return;
-
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-
-            slideIndex++;
-            if (slideIndex > slides.length) {
-                slideIndex = 1;
-            }
-
-            slides[slideIndex - 1].style.display = "block";
-            setTimeout(showSlides, 4000); // 4 second transitions
-        }
-
-        if (document.getElementsByClassName("mySlides").length > 0) {
-            showSlides();
-        }
-
-        // Auto-hide flash messages
-        setTimeout(function() {
-            const flashes = document.querySelectorAll('.flash-message');
-            flashes.forEach(function(flash) {
-                flash.style.transition = 'opacity 0.5s, transform 0.5s';
-                flash.style.opacity = '0';
-                flash.style.transform = 'translateX(100%)';
-                setTimeout(() => flash.remove(), 500);
-            });
-        }, 5000);
-
-        // Image lazy loading observer
-        if ('IntersectionObserver' in window) {
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        img.src = img.dataset.src || img.src;
-                        img.classList.add('loaded');
-                        observer.unobserve(img);
-                    }
-                });
-            });
-
-            document.querySelectorAll('img[loading="lazy"]').forEach(img => {
-                imageObserver.observe(img);
-            });
-        }
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-    </script>
-
 </body>
 </html>

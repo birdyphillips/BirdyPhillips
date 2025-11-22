@@ -405,8 +405,9 @@
             <p style="color: #6b7280; margin-top: 5px;">Welcome back, {{ session.username }}! Manage your content here.</p>
             
             <div class="header-actions">
-                <a href="{{ url_for('main.home') }}" class="btn btn-secondary">← Back to Gallery</a>
+                <a href="{{ url_for('main.home') }}" class="btn btn-secondary">← Home</a>
                 <div class="nav-group">
+                    <a href="{{ url_for('main.gallery') }}" class="btn btn-secondary">🖼️ Gallery</a>
                     <a href="{{ url_for('blog.blog_index') }}" class="btn btn-primary">📝 Blog</a>
                     <a href="{{ url_for('main.admin_dashboard') }}" class="btn btn-secondary">🎛️ Admin</a>
                     <a href="{{ url_for('auth.logout') }}" class="btn btn-danger">🚪 Logout</a>

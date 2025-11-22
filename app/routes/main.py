@@ -13,7 +13,13 @@ main = Blueprint('main', __name__)
 
 @main.route('/')
 def home():
-    """Home page with image gallery."""
+    """Landing page."""
+    return render_template('index.html')
+
+
+@main.route('/gallery')
+def gallery():
+    """Gallery page with image slideshow."""
     # Get all media from database, ordered by newest first
     media_list = Media.query.order_by(Media.upload_time.desc()).all()
     
@@ -36,7 +42,7 @@ def home():
             })
             total_size += media.file_size
     
-    return render_template('index.html', 
+    return render_template('gallery.html', 
                          images=images,
                          image_data=image_data,
                          total_images=len(images),
