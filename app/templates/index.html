@@ -78,6 +78,18 @@
             flex-wrap: wrap;
         }
 
+        .nav-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: nowrap;
+            align-items: stretch;
+        }
+
+        .nav-group .btn {
+            min-width: 110px;
+            justify-content: center;
+        }
+
         .btn {
             padding: 12px 24px;
             background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
@@ -95,6 +107,7 @@
             border: none;
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3);
+            white-space: nowrap;
         }
 
         .btn:hover {
@@ -406,24 +419,32 @@
                 <h1 class="brand-title">📸 BirdyPhillips</h1>
             </div>
             <div class="header-actions">
-                <a href="{{ url_for('blog.blog_index') }}" class="btn btn-blog">
-                    <span class="btn-icon">📝</span>
-                    <span>Blog</span>
-                </a>
                 {% if session.logged_in %}
-                    <a href="{{ url_for('media.upload') }}" class="btn">
-                        <span class="btn-icon">⬆️</span>
-                        <span>Upload</span>
-                    </a>
-                    <a href="{{ url_for('auth.logout') }}" class="btn btn-secondary">
-                        <span class="btn-icon">🚪</span>
-                        <span>Logout</span>
-                    </a>
+                    <div class="nav-group">
+                        <a href="{{ url_for('blog.blog_index') }}" class="btn btn-blog">
+                            <span class="btn-icon">📝</span>
+                            <span>Blog</span>
+                        </a>
+                        <a href="{{ url_for('main.admin_dashboard') }}" class="btn btn-secondary">
+                            <span class="btn-icon">🎛️</span>
+                            <span>Admin</span>
+                        </a>
+                        <a href="{{ url_for('auth.logout') }}" class="btn btn-secondary">
+                            <span class="btn-icon">🚪</span>
+                            <span>Logout</span>
+                        </a>
+                    </div>
                 {% else %}
-                    <a href="{{ url_for('auth.login') }}" class="btn btn-secondary">
-                        <span class="btn-icon">🔐</span>
-                        <span>Admin</span>
-                    </a>
+                    <div class="nav-group">
+                        <a href="{{ url_for('blog.blog_index') }}" class="btn btn-blog">
+                            <span class="btn-icon">📝</span>
+                            <span>Blog</span>
+                        </a>
+                        <a href="{{ url_for('auth.login') }}" class="btn btn-secondary">
+                            <span class="btn-icon">🔐</span>
+                            <span>Admin</span>
+                        </a>
+                    </div>
                 {% endif %}
             </div>
         </div>

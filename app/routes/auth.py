@@ -23,7 +23,7 @@ def login():
             session['login_time'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
             session.permanent = False
             flash(f'Welcome back, {username}!', 'success')
-            return redirect(url_for('main.home'))
+            return redirect(url_for('main.admin_dashboard'))
         else:
             flash('Invalid username or password.', 'error')
 

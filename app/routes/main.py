@@ -43,6 +43,65 @@ def home():
                          total_size=format_file_size(total_size))
 
 
+@main.route('/admin')
+def admin_dashboard():
+    """Admin dashboard for managing media and blog posts."""
+    if 'logged_in' not in session or not session['logged_in']:
+        flash('Please login first.', 'error')
+        return redirect(url_for('auth.login'))
+    
+    from flask import current_app
+    
+    # Get media statistics
+    media_list = Media.query.order_by(Media.upload_time.desc()).all()
+    total_media = len(media_list)
+    total_media_size = sum(m.file_size for m in media_list)
+    recent_media = media_list[:10]  # Last 10 uploads
+    
+    # Get blog statistics
+    from app.routes.blog import get_all_essays, CONTENT_DIR
+    essays = get_all_essays()
+    total_blogs = len(essays)
+    published_blogs = len([e for e in essays if e['published']])
+    draft_blogs = total_blogs - published_blogs
+    
+    # Build media data for management
+    media_data = []
+    for media in media_list:
+        media_data.append({
+            'id': media.id,
+            'filename': media.filename,
+            'original_filename': media.original_filename,
+            'file_type': media.file_type,
+            'file_size': media.file_size,
+            'size_formatted': format_file_size(media.file_size),
+            'upload_time': media.upload_time,
+            'uploaded_by': media.uploaded_by or 'Unknown'
+        })
+    
+    # Build blog data for management
+    blog_data = []
+    for essay in essays:
+        blog_data.append({
+            'slug': essay['slug'],
+            'title': essay['title'],
+            'date': essay['date'],
+            'author': essay['author'],
+            'tags': essay['tags'],
+            'published': essay['published']
+        })
+    
+    return render_template('admin_dashboard.html',
+                         total_media=total_media,
+                         total_media_size=format_file_size(total_media_size),
+                         recent_media=recent_media,
+                         media_data=media_data,
+                         total_blogs=total_blogs,
+                         published_blogs=published_blogs,
+                         draft_blogs=draft_blogs,
+                         blog_data=blog_data)
+
+
 @main.route('/sync')
 def sync_filesystem():
     """Admin route to sync filesystem with database."""
@@ -83,4 +142,4 @@ def sync_filesystem():
         db.session.rollback()
         flash(f'Sync error: {str(e)}', 'error')
     
-    return redirect(url_for('main.home'))
+    return redirect(url_for('main.admin_dashboard'))

@@ -1,9 +1,10 @@
 """Blog/Essay route handlers."""
-from flask import Blueprint, render_template, abort
+from flask import Blueprint, render_template, abort, request, redirect, url_for, flash, session
 import os
 import markdown
 import yaml
 from datetime import datetime
+import re
 
 blog = Blueprint('blog', __name__)
 
@@ -83,3 +84,132 @@ def blog_post(slug):
         abort(404)
     
     return render_template('blog/post.html', essay=essay)
+
+
+@blog.route('/blog/new', methods=['GET', 'POST'])
+def new_post():
+    """Create a new blog post (admin only)."""
+    if 'logged_in' not in session or not session['logged_in']:
+        flash('Please login first to create blog posts.', 'error')
+        return redirect(url_for('auth.login'))
+    
+    if request.method == 'POST':
+        title = request.form.get('title', '').strip()
+        content = request.form.get('content', '').strip()
+        tags = request.form.get('tags', '').strip()
+        published = request.form.get('published') == 'on'
+        
+        if not title or not content:
+            flash('Title and content are required.', 'error')
+            return redirect(request.url)
+        
+        # Create slug from title
+        slug = re.sub(r'[^a-z0-9]+', '-', title.lower()).strip('-')
+        date_str = datetime.now().strftime('%Y-%m-%d')
+        filename = f"{date_str}-{slug}.md"
+        
+        # Parse tags
+        tag_list = [tag.strip() for tag in tags.split(',') if tag.strip()]
+        
+        # Create frontmatter
+        frontmatter = {
+            'title': title,
+            'date': datetime.now().strftime('%Y-%m-%d'),
+            'author': session.get('username', 'BirdyPhillips'),
+            'tags': tag_list,
+            'published': published
+        }
+        
+        # Create file content
+        file_content = f"---\n{yaml.dump(frontmatter, default_flow_style=False)}---\n\n{content}"
+        
+        # Save file
+        os.makedirs(CONTENT_DIR, exist_ok=True)
+        filepath = os.path.join(CONTENT_DIR, filename)
+        
+        with open(filepath, 'w', encoding='utf-8') as f:
+            f.write(file_content)
+        
+        flash(f'✓ Blog post "{title}" created successfully!', 'success')
+        return redirect(url_for('blog.blog_index'))
+    
+    return render_template('blog/new.html')
+
+
+@blog.route('/blog/edit/<slug>', methods=['GET', 'POST'])
+def edit_post(slug):
+    """Edit an existing blog post (admin only)."""
+    if 'logged_in' not in session or not session['logged_in']:
+        flash('Please login first to edit blog posts.', 'error')
+        return redirect(url_for('auth.login'))
+    
+    # Find the markdown file
+    filename = slug if slug.endswith('.md') else f"{slug}.md"
+    
+    # Try to find the file (may have date prefix)
+    essay_file = None
+    for file in os.listdir(CONTENT_DIR):
+        if file.endswith(filename) or file == filename:
+            essay_file = file
+            break
+    
+    if not essay_file:
+        flash(f'Blog post "{slug}" not found.', 'error')
+        return redirect(url_for('blog.blog_index'))
+    
+    filepath = os.path.join(CONTENT_DIR, essay_file)
+    
+    if request.method == 'POST':
+        title = request.form.get('title', '').strip()
+        content = request.form.get('content', '').strip()
+        tags = request.form.get('tags', '').strip()
+        published = request.form.get('published') == 'on'
+        
+        if not title or not content:
+            flash('Title and content are required.', 'error')
+            return redirect(request.url)
+        
+        # Parse tags
+        tag_list = [tag.strip() for tag in tags.split(',') if tag.strip()]
+        
+        # Parse existing file to get original date
+        essay = parse_essay(essay_file)
+        original_date = essay['date'].strftime('%Y-%m-%d') if essay else datetime.now().strftime('%Y-%m-%d')
+        
+        # Create frontmatter
+        frontmatter = {
+            'title': title,
+            'date': original_date,
+            'author': session.get('username', 'BirdyPhillips'),
+            'tags': tag_list,
+            'published': published
+        }
+        
+        # Create file content
+        file_content = f"---\n{yaml.dump(frontmatter, default_flow_style=False)}---\n\n{content}"
+        
+        # Save file
+        with open(filepath, 'w', encoding='utf-8') as f:
+            f.write(file_content)
+        
+        flash(f'✓ Blog post "{title}" updated successfully!', 'success')
+        return redirect(url_for('main.admin_dashboard'))
+    
+    # GET request - load existing content
+    essay = parse_essay(essay_file)
+    if not essay:
+        flash(f'Error reading blog post "{slug}".', 'error')
+        return redirect(url_for('blog.blog_index'))
+    
+    # Get raw content (without HTML conversion)
+    with open(filepath, 'r', encoding='utf-8') as f:
+        file_content = f.read()
+    
+    # Split frontmatter and content
+    parts = file_content.split('---', 2)
+    raw_content = parts[2].strip() if len(parts) > 2 else ''
+    
+    return render_template('blog/edit.html', 
+                         essay=essay, 
+                         raw_content=raw_content,
+                         tags_str=', '.join(essay['tags']))
