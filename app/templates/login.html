@@ -108,23 +108,31 @@
             position: relative;
         }
 
+        .password-toggle .form-input {
+            padding-right: 60px;
+        }
+
         .show-password {
             position: absolute;
-            right: 12px;
+            right: 14px;
             top: 50%;
             transform: translateY(-50%);
             background: none;
             border: none;
             color: #7f8c8d;
             cursor: pointer;
-            font-size: 12px;
-            padding: 4px 8px;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 6px 10px;
             border-radius: 4px;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .show-password:hover {
             color: #f39c12;
+            background: rgba(243, 156, 18, 0.1);
         }
 
         .btn {
