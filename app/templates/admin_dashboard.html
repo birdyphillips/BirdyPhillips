@@ -460,8 +460,8 @@
             <div class="nav-links">
                 <a href="{{ url_for('main.home') }}" class="nav-link">Home</a>
                 <a href="{{ url_for('main.gallery') }}" class="nav-link">Gallery</a>
-                <a href="{{ url_for('blog.index') }}" class="nav-link">Blog</a>
-                {% if current_user.is_authenticated %}
+                <a href="{{ url_for('blog.blog_index') }}" class="nav-link">Blog</a>
+                {% if session.logged_in %}
                     <a href="{{ url_for('main.admin_dashboard') }}" class="nav-link">Admin</a>
                     <a href="{{ url_for('auth.logout') }}" class="nav-link">Logout</a>
                 {% else %}
