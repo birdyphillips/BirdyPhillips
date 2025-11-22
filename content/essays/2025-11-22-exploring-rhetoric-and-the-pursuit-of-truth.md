@@ -1,5 +1,5 @@
 ---
-author: admin
+author: Andre Phillips
 date: '2025-11-22'
 published: true
 tags:
@@ -34,6 +34,6 @@ However, morality may be viewed differently by different cultures. One society m
 
 ## References
 
-Aristotle. (2010). *Rhetoric* (J. H. Freese, Trans.). In Wikisource. Retrieved October 22, 2024, from https://en.wikisource.org/w/index.php?title=Rhetoric_(Freese)/Book_1&oldid=1833179
+Aristotle. (2010). *Rhetoric* (J. H. Freese, Trans.) https://en.wikisource.org/w/index.php?title=Rhetoric_(Freese)/Book_1&oldid=1833179
 
 Cicero, M. T. (1913). *De officiis* (W. Miller, Trans.). Harvard University Press. (Original work published 44 B.C.E.).

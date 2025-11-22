@@ -135,6 +135,19 @@ def new_post():
         if not author:
             author = session.get('username', 'BirdyPhillips')
         
+        # Strip leading whitespace from each line to prevent code blocks
+        # but preserve intentional blank lines
+        content_lines = content.split('\n')
+        processed_lines = []
+        for line in content_lines:
+            # Keep blank lines as-is
+            if line.strip() == '':
+                processed_lines.append('')
+            else:
+                # Remove leading whitespace but keep the content
+                processed_lines.append(line.lstrip())
+        content = '\n'.join(processed_lines)
+        
         # Create slug from title
         slug = re.sub(r'[^a-z0-9]+', '-', title.lower()).strip('-')
         date_str = datetime.now().strftime('%Y-%m-%d')
@@ -205,6 +218,19 @@ def edit_post(slug):
         # Use provided author or default to username or BirdyPhillips
         if not author:
             author = session.get('username', 'BirdyPhillips')
+        
+        # Strip leading whitespace from each line to prevent code blocks
+        # but preserve intentional blank lines
+        content_lines = content.split('\n')
+        processed_lines = []
+        for line in content_lines:
+            # Keep blank lines as-is
+            if line.strip() == '':
+                processed_lines.append('')
+            else:
+                # Remove leading whitespace but keep the content
+                processed_lines.append(line.lstrip())
+        content = '\n'.join(processed_lines)
         
         # Parse tags
         tag_list = [tag.strip() for tag in tags.split(',') if tag.strip()]
