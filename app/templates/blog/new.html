@@ -290,25 +290,33 @@
                 </div>
                 
                 <div class="form-group">
+                    <label for="author">Author Name</label>
+                    <input type="text" id="author" name="author" 
+                           value="{{ session.username if session.username else 'BirdyPhillips' }}"
+                           placeholder="Enter author name...">
+                    <small>Optional - defaults to your username</small>
+                </div>
+                
+                <div class="form-group">
                     <label for="tags">Tags</label>
                     <input type="text" id="tags" name="tags" 
-                           placeholder="photography, art, thoughts (comma-separated)">
+                           placeholder="Philosophy, Rhetoric, Photography (comma-separated)">
                     <small>Separate tags with commas</small>
                 </div>
                 
                 <div class="form-group">
-                    <label for="content">Content</label>
+                    <label for="content">Content (Markdown with APA Formatting)</label>
                     <textarea id="content" name="content" required 
                               placeholder="Write your post content here using Markdown..."></textarea>
                     <div class="markdown-help">
-                        <h4>Markdown Quick Reference:</h4>
-                        <code># Heading 1</code> | 
-                        <code>## Heading 2</code> | 
-                        <code>**bold**</code> | 
-                        <code>*italic*</code> | 
-                        <code>[link](url)</code> | 
-                        <code>![image](url)</code> | 
-                        <code>- list item</code>
+                        <h4>APA Formatting Tips:</h4>
+                        <p><strong>Headers:</strong> <code>## Section Title</code> (note space after ##)</p>
+                        <p><strong>Paragraphs:</strong> Use blank lines between paragraphs</p>
+                        <p><strong>Italics:</strong> <code>*Book Title*</code> or <code>*Movie Title*</code></p>
+                        <p><strong>Bold:</strong> <code>**important text**</code></p>
+                        <p><strong>Citations:</strong> (Author, Year, p. ##)</p>
+                        <p><strong>References:</strong> End with <code>## References</code> section</p>
+                        <p>Author. (Year). *Title* (Translator, Trans.). Publisher.</p>
                     </div>
                 </div>
                 

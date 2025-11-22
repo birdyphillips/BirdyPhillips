@@ -122,6 +122,7 @@ def new_post():
     
     if request.method == 'POST':
         title = request.form.get('title', '').strip()
+        author = request.form.get('author', '').strip()
         content = request.form.get('content', '').strip()
         tags = request.form.get('tags', '').strip()
         published = request.form.get('published') == 'on'
@@ -129,6 +130,10 @@ def new_post():
         if not title or not content:
             flash('Title and content are required.', 'error')
             return redirect(request.url)
+        
+        # Use provided author or default to username or BirdyPhillips
+        if not author:
+            author = session.get('username', 'BirdyPhillips')
         
         # Create slug from title
         slug = re.sub(r'[^a-z0-9]+', '-', title.lower()).strip('-')
@@ -142,7 +147,7 @@ def new_post():
         frontmatter = {
             'title': title,
             'date': datetime.now().strftime('%Y-%m-%d'),
-            'author': session.get('username', 'BirdyPhillips'),
+            'author': author,
             'tags': tag_list,
             'published': published
         }
@@ -188,6 +193,7 @@ def edit_post(slug):
     
     if request.method == 'POST':
         title = request.form.get('title', '').strip()
+        author = request.form.get('author', '').strip()
         content = request.form.get('content', '').strip()
         tags = request.form.get('tags', '').strip()
         published = request.form.get('published') == 'on'
@@ -195,6 +201,10 @@ def edit_post(slug):
         if not title or not content:
             flash('Title and content are required.', 'error')
             return redirect(request.url)
+        
+        # Use provided author or default to username or BirdyPhillips
+        if not author:
+            author = session.get('username', 'BirdyPhillips')
         
         # Parse tags
         tag_list = [tag.strip() for tag in tags.split(',') if tag.strip()]
@@ -207,7 +217,7 @@ def edit_post(slug):
         frontmatter = {
             'title': title,
             'date': original_date,
-            'author': session.get('username', 'BirdyPhillips'),
+            'author': author,
             'tags': tag_list,
             'published': published
         }
