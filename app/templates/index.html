@@ -388,6 +388,7 @@
                 <h1 class="brand-title">📸 BirdyPhillips</h1>
             </div>
             <div class="header-actions">
+                <a href="{{ url_for('blog.blog_index') }}" class="btn"><span class="btn-icon">📝</span>Blog</a>
                 {% if session.logged_in %}
                     <a href="{{ url_for('media.upload') }}" class="btn"><span class="btn-icon">⬆️</span>Upload</a>
                     <a href="{{ url_for('auth.logout') }}" class="btn btn-secondary"><span class="btn-icon">🚪</span>Logout</a>

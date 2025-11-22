@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ essay.title }} | BirdyPhillips</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 50%, #16213e 100%);
+            font-family: 'Open Sans', sans-serif;
+            color: #ecf0f1;
+            min-height: 100vh;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #000000;
+            text-align: center;
+            padding: 30px 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .brand-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 24px;
+            color: #f39c12;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .article-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .article-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 42px;
+            color: #f39c12;
+            margin: 0 0 20px 0;
+        }
+
+        .article-meta {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+
+        .article-tags {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .tag {
+            background: rgba(243, 156, 18, 0.2);
+            color: #f39c12;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+        }
+
+        .article-content {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 40px;
+            border: 1px solid rgba(243, 156, 18, 0.2);
+        }
+
+        .article-content h1,
+        .article-content h2,
+        .article-content h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: #f39c12;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .article-content h1 { font-size: 32px; }
+        .article-content h2 { font-size: 26px; }
+        .article-content h3 { font-size: 22px; }
+
+        .article-content p {
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .article-content a {
+            color: #f39c12;
+            text-decoration: underline;
+        }
+
+        .article-content a:hover {
+            color: #e67e22;
+        }
+
+        .article-content ul, 
+        .article-content ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        .article-content li {
+            margin-bottom: 10px;
+        }
+
+        .article-content blockquote {
+            border-left: 4px solid #f39c12;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #95a5a6;
+            font-style: italic;
+        }
+
+        .article-content code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #f39c12;
+        }
+
+        .article-content pre {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border: 1px solid rgba(243, 156, 18, 0.3);
+        }
+
+        .article-content pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            display: inline-block;
+            color: #f39c12;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 2px solid #f39c12;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .nav-link:hover {
+            background: #f39c12;
+            color: #000;
+        }
+
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 32px;
+            }
+            .article-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="brand-title">BirdyPhillips</h1>
+    </header>
+
+    <div class="container">
+        <article>
+            <div class="article-header">
+                <h1 class="article-title">{{ essay.title }}</h1>
+                <div class="article-meta">
+                    {{ essay.date.strftime('%B %d, %Y') }} • {{ essay.author }}
+                </div>
+                {% if essay.tags %}
+                <div class="article-tags">
+                    {% for tag in essay.tags %}
+                    <span class="tag">{{ tag }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="article-content">
+                {{ essay.content | safe }}
+            </div>
+        </article>
+
+        <div class="nav-links">
+            <a href="{{ url_for('blog.blog_index') }}" class="nav-link">← All Essays</a>
+            <a href="{{ url_for('main.home') }}" class="nav-link">Gallery</a>
+        </div>
+    </div>
+</body>
+</html>

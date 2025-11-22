@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | BirdyPhillips</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 50%, #16213e 100%);
+            font-family: 'Orbitron', sans-serif;
+            color: white;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        header {
+            background-color: #000000;
+            text-align: center;
+            padding: 30px 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .brand-title {
+            font-size: 36px;
+            color: #f39c12;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin: 0;
+        }
+
+        .subtitle {
+            color: #95a5a6;
+            margin-top: 10px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .blog-list {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .essay-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s;
+            border: 1px solid rgba(243, 156, 18, 0.2);
+        }
+
+        .essay-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-3px);
+            border-color: #f39c12;
+        }
+
+        .essay-title {
+            font-size: 28px;
+            color: #f39c12;
+            margin: 0 0 10px 0;
+            text-decoration: none;
+            display: block;
+        }
+
+        .essay-title:hover {
+            color: #e67e22;
+        }
+
+        .essay-meta {
+            color: #7f8c8d;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .essay-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .tag {
+            background: rgba(243, 156, 18, 0.2);
+            color: #f39c12;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+        }
+
+        .nav-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #f39c12;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 2px solid #f39c12;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .nav-link:hover {
+            background: #f39c12;
+            color: #000;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="brand-title">📝 BirdyPhillips Blog</h1>
+        <p class="subtitle">Essays & Thoughts</p>
+    </header>
+
+    <div class="container">
+        <a href="{{ url_for('main.home') }}" class="nav-link">← Back to Gallery</a>
+
+        {% if essays %}
+        <div class="blog-list">
+            {% for essay in essays %}
+            <article class="essay-card">
+                <a href="{{ url_for('blog.blog_post', slug=essay.slug) }}" class="essay-title">
+                    {{ essay.title }}
+                </a>
+                <div class="essay-meta">
+                    {{ essay.date.strftime('%B %d, %Y') }} • {{ essay.author }}
+                </div>
+                {% if essay.tags %}
+                <div class="essay-tags">
+                    {% for tag in essay.tags %}
+                    <span class="tag">{{ tag }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </article>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <h2>No essays yet</h2>
+            <p>Check back soon for new content!</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

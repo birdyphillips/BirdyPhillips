@@ -17,11 +17,12 @@ def create_app(config_name='default'):
     db.init_app(app)
     
     # Register blueprints
-    from app.routes import main, auth, media, api
+    from app.routes import main, auth, media, api, blog
     app.register_blueprint(main)
     app.register_blueprint(auth)
     app.register_blueprint(media)
     app.register_blueprint(api)
+    app.register_blueprint(blog)
     
     # Register error handlers
     @app.errorhandler(404)
