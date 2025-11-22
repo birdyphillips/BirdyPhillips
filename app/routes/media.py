@@ -58,13 +58,35 @@ def upload():
             db.session.add(new_media)
             db.session.commit()
             
-            flash(f'✓ "{filename}" uploaded successfully ({format_file_size(file_size)})', 'success')
-            return redirect(url_for('main.home'))
+            # Redirect to splash page with uploaded image info
+            return redirect(url_for('media.upload_success', filename=filename))
         else:
             flash('Invalid file type. Allowed: PNG, JPG, JPEG, GIF, WEBP, BMP', 'error')
             return redirect(request.url)
     
     return render_template('upload.html')
+
+
+@media.route('/upload/success/<filename>')
+def upload_success(filename):
+    """Show upload success splash page."""
+    if 'logged_in' not in session or not session['logged_in']:
+        flash('Please login first.', 'error')
+        return redirect(url_for('auth.login'))
+    
+    # Get media info from database
+    media_item = Media.query.filter_by(filename=secure_filename(filename)).first()
+    
+    if not media_item:
+        flash('Image not found', 'error')
+        return redirect(url_for('main.admin_dashboard'))
+    
+    return render_template('upload_success.html', 
+                         filename=media_item.filename,
+                         original_filename=media_item.original_filename,
+                         file_size=format_file_size(media_item.file_size),
+                         file_type=media_item.file_type.upper(),
+                         upload_time=media_item.upload_time.strftime('%B %d, %Y at %I:%M %p'))
 
 
 @media.route('/delete/<filename>', methods=['POST'])
