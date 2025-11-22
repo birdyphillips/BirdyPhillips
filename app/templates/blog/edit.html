@@ -292,21 +292,21 @@
         
         <div class="editor-card">
             <div class="post-info">
-                📅 Originally published: {{ essay.date.strftime('%B %d, %Y') }} by {{ essay.author }}
+                📅 Originally published: {{ blog.date.strftime('%B %d, %Y') }} by {{ blog.author }}
             </div>
 
-            <form method="POST" action="{{ url_for('blog.edit_post', slug=essay.slug) }}">
+            <form method="POST" action="{{ url_for('blog.edit_post', slug=blog.slug) }}">
                 <div class="form-group">
                     <label for="title">Title</label>
                     <input type="text" id="title" name="title" required 
-                           value="{{ essay.title }}"
+                           value="{{ blog.title }}"
                            placeholder="Enter your post title...">
                 </div>
                 
                 <div class="form-group">
                     <label for="author">Author Name</label>
                     <input type="text" id="author" name="author" 
-                           value="{{ essay.author }}"
+                           value="{{ blog.author }}"
                            placeholder="Enter author name...">
                     <small>Optional - defaults to BirdyPhillips</small>
                 </div>
@@ -339,7 +339,7 @@
                 
                 <div class="checkbox-group">
                     <input type="checkbox" id="published" name="published" 
-                           {% if essay.published %}checked{% endif %}>
+                           {% if blog.published %}checked{% endif %}>
                     <label for="published">Published</label>
                 </div>
                 

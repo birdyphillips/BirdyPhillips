@@ -1,4 +1,4 @@
-"""Blog/Essay route handlers."""
+"""Blog route handlers."""
 from flask import Blueprint, render_template, abort, request, redirect, url_for, flash, session
 import os
 import markdown
@@ -8,12 +8,12 @@ import re
 
 blog = Blueprint('blog', __name__)
 
-# Path to essays
-CONTENT_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'content', 'essays')
+# Path to blogs
+CONTENT_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'content', 'blogs')
 
 
-def parse_essay(filename):
-    """Parse essay markdown file with frontmatter."""
+def parse_blog(filename):
+    """Parse blog markdown file with frontmatter."""
     filepath = os.path.join(CONTENT_DIR, filename)
     
     if not os.path.exists(filepath):
@@ -77,40 +77,40 @@ def parse_essay(filename):
     }
 
 
-def get_all_essays():
-    """Get all published essays sorted by date."""
+def get_all_blogs():
+    """Get all published blogs sorted by date."""
     if not os.path.exists(CONTENT_DIR):
         return []
     
-    essays = []
+    blogs = []
     for filename in os.listdir(CONTENT_DIR):
         if filename.endswith('.md'):
-            essay = parse_essay(filename)
-            if essay and essay['published']:
-                essays.append(essay)
+            blog = parse_blog(filename)
+            if blog and blog['published']:
+                blogs.append(blog)
     
     # Sort by date, newest first
-    essays.sort(key=lambda x: x['date'], reverse=True)
-    return essays
+    blogs.sort(key=lambda x: x['date'], reverse=True)
+    return blogs
 
 
 @blog.route('/blog')
 def blog_index():
     """Blog listing page."""
-    essays = get_all_essays()
-    return render_template('blog/index.html', essays=essays)
+    blogs = get_all_blogs()
+    return render_template('blog/index.html', blogs=blogs)
 
 
 @blog.route('/blog/<slug>')
 def blog_post(slug):
     """Individual blog post page."""
     filename = slug if slug.endswith('.md') else f"{slug}.md"
-    essay = parse_essay(filename)
+    blog_post = parse_blog(filename)
     
-    if not essay or not essay['published']:
+    if not blog_post or not blog_post['published']:
         abort(404)
     
-    return render_template('blog/post.html', essay=essay)
+    return render_template('blog/post.html', blog=blog_post)
 
 
 @blog.route('/blog/new', methods=['GET', 'POST'])
@@ -192,13 +192,13 @@ def edit_post(slug):
     filename = slug if slug.endswith('.md') else f"{slug}.md"
     
     # Try to find the file (may have date prefix)
-    essay_file = None
+    blog_file = None
     for file in os.listdir(CONTENT_DIR):
         if file.endswith(filename) or file == filename:
-            essay_file = file
+            blog_file = file
             break
     
-    if not essay_file:
+    if not blog_file:
         flash(f'Blog post "{slug}" not found.', 'error')
         return redirect(url_for('blog.blog_index'))
     
@@ -236,8 +236,8 @@ def edit_post(slug):
         tag_list = [tag.strip() for tag in tags.split(',') if tag.strip()]
         
         # Parse existing file to get original date
-        essay = parse_essay(essay_file)
-        original_date = essay['date'].strftime('%Y-%m-%d') if essay else datetime.now().strftime('%Y-%m-%d')
+        blog_data = parse_blog(blog_file)
+        original_date = blog_data['date'].strftime('%Y-%m-%d') if blog_data else datetime.now().strftime('%Y-%m-%d')
         
         # Create frontmatter
         frontmatter = {
@@ -259,8 +259,8 @@ def edit_post(slug):
         return redirect(url_for('blog.blog_index'))
     
     # GET request - load existing content
-    essay = parse_essay(essay_file)
-    if not essay:
+    blog_data = parse_blog(blog_file)
+    if not blog_data:
         flash(f'Error reading blog post "{slug}".', 'error')
         return redirect(url_for('blog.blog_index'))
     
@@ -273,6 +273,6 @@ def edit_post(slug):
     raw_content = parts[2].strip() if len(parts) > 2 else ''
     
     return render_template('blog/edit.html', 
-                         essay=essay, 
+                         blog=blog_data, 
                          raw_content=raw_content,
-                         tags_str=', '.join(essay['tags']))
+                         tags_str=', '.join(blog_data['tags']))

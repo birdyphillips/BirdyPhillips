@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ essay.title }} | BirdyPhillips</title>
+    <title>{{ blog.title }} | BirdyPhillips</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <style>
@@ -285,13 +285,13 @@
     <div class="container">
         <article>
             <div class="article-header">
-                <h1 class="article-title">{{ essay.title }}</h1>
+                <h1 class="article-title">{{ blog.title }}</h1>
                 <div class="article-meta">
-                    {{ essay.date.strftime('%B %d, %Y') }} • {{ essay.author }}
+                    {{ blog.date.strftime('%B %d, %Y') }} • {{ blog.author }}
                 </div>
-                {% if essay.tags %}
+                {% if blog.tags %}
                 <div class="article-tags">
-                    {% for tag in essay.tags %}
+                    {% for tag in blog.tags %}
                     <span class="tag">{{ tag }}</span>
                     {% endfor %}
                 </div>
@@ -299,14 +299,14 @@
             </div>
 
             <div class="article-content">
-                {{ essay.content | safe }}
+                {{ blog.content | safe }}
             </div>
         </article>
 
         <div style="display: flex; gap: 15px; margin-top: 40px; flex-wrap: wrap;">
-            <a href="{{ url_for('blog.blog_index') }}" class="nav-link">← All Essays</a>
+            <a href="{{ url_for('blog.blog_index') }}" class="nav-link">← All Blogs</a>
             {% if session.logged_in %}
-            <a href="{{ url_for('blog.edit_post', slug=essay.slug) }}" class="nav-link">Edit Post</a>
+            <a href="{{ url_for('blog.edit_post', slug=blog.slug) }}" class="nav-link">Edit Post</a>
             {% endif %}
         </div>
     </div>

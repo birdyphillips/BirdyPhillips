@@ -65,10 +65,10 @@ def admin_dashboard():
     recent_media = media_list[:10]  # Last 10 uploads
     
     # Get blog statistics
-    from app.routes.blog import get_all_essays, CONTENT_DIR
-    essays = get_all_essays()
-    total_blogs = len(essays)
-    published_blogs = len([e for e in essays if e['published']])
+    from app.routes.blog import get_all_blogs, CONTENT_DIR
+    blogs = get_all_blogs()
+    total_blogs = len(blogs)
+    published_blogs = len([b for b in blogs if b['published']])
     draft_blogs = total_blogs - published_blogs
     
     # Build media data for management
@@ -86,15 +86,15 @@ def admin_dashboard():
         })
     
     # Build blog data for management
-    blog_data = []
-    for essay in essays:
-        blog_data.append({
-            'slug': essay['slug'],
-            'title': essay['title'],
-            'date': essay['date'],
-            'author': essay['author'],
-            'tags': essay['tags'],
-            'published': essay['published']
+    blog_posts = []
+    for blog in blogs:
+        blog_posts.append({
+            'slug': blog['slug'],
+            'title': blog['title'],
+            'date': blog['date'],
+            'author': blog['author'],
+            'tags': blog['tags'],
+            'published': blog['published']
         })
     
     return render_template('admin_dashboard.html',
