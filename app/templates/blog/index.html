@@ -7,38 +7,99 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 50%, #16213e 100%);
             font-family: 'Orbitron', sans-serif;
             color: white;
             min-height: 100vh;
-            margin: 0;
         }
 
-        header {
-            background-color: #000000;
-            text-align: center;
-            padding: 30px 20px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        nav {
+            background: linear-gradient(180deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.8) 100%);
+            backdrop-filter: blur(10px);
+            padding: 20px 40px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #f39c12;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
         }
 
-        .brand-title {
-            font-size: 36px;
-            color: #f39c12;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin: 0;
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
-        .subtitle {
-            color: #95a5a6;
-            margin-top: 10px;
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 28px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 1px solid rgba(243, 156, 18, 0.3);
+        }
+
+        .nav-link:hover {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(243, 156, 18, 0.4);
         }
 
         .container {
             max-width: 900px;
             margin: 40px auto;
-            padding: 20px;
+            padding: 100px 20px 20px 20px;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .page-title {
+            font-size: 48px;
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .page-subtitle {
+            color: #95a5a6;
+            font-size: 18px;
         }
 
         .blog-list {
@@ -118,19 +179,36 @@
     </style>
 </head>
 <body>
-    <header>
-        <h1 class="brand-title">📝 BirdyPhillips Blog</h1>
-    </header>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">BIRDYPHILLIPS</div>
+            <div class="nav-links">
+                <a href="{{ url_for('main.home') }}" class="nav-link">Home</a>
+                <a href="{{ url_for('main.gallery') }}" class="nav-link">Gallery</a>
+                <a href="{{ url_for('blog.index') }}" class="nav-link">Blog</a>
+                {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('main.admin_dashboard') }}" class="nav-link">Admin</a>
+                    <a href="{{ url_for('auth.logout') }}" class="nav-link">Logout</a>
+                {% else %}
+                    <a href="{{ url_for('auth.login') }}" class="nav-link">Login</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
 
     <div class="container">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-            <a href="{{ url_for('main.home') }}" class="nav-link">← Back to Home</a>
-            {% if session.logged_in %}
-            <a href="{{ url_for('blog.new_post') }}" class="nav-link" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none;">
-                ✍️ New Post
-            </a>
-            {% endif %}
+        <div class="page-header">
+            <h1 class="page-title">Blog</h1>
+            <p class="page-subtitle">Thoughts & Essays</p>
         </div>
+
+        {% if current_user.is_authenticated %}
+        <div style="text-align: center; margin-bottom: 30px;">
+            <a href="{{ url_for('blog.new_post') }}" class="nav-link" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none;">
+                ✍️ New Blog Post
+            </a>
+        </div>
+        {% endif %}
 
         {% if essays %}
         <div class="blog-list">

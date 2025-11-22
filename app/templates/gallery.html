@@ -23,123 +23,61 @@
         }
 
         /* Header Styles */
-        header {
-            background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 100%);
+        nav {
+            background: linear-gradient(180deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.8) 100%);
             backdrop-filter: blur(10px);
-            padding: 25px 20px;
-            box-shadow: 0 4px 30px rgba(243, 156, 18, 0.2);
-            position: sticky;
+            padding: 20px 40px;
+            position: fixed;
+            width: 100%;
             top: 0;
             z-index: 1000;
             border-bottom: 2px solid #f39c12;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
         }
 
-        .header-content {
+        .nav-container {
             max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 20px;
         }
 
-        .brand-section {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .brand-title {
-            font-size: 32px;
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 28px;
+            font-weight: 900;
             background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-weight: 900;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: 2px;
         }
 
-        .stats-badge {
-            background: rgba(243, 156, 18, 0.2);
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 12px;
-            border: 1px solid rgba(243, 156, 18, 0.3);
-            color: #f39c12;
-        }
-
-        .header-actions {
+        .nav-links {
             display: flex;
-            gap: 12px;
+            gap: 15px;
             align-items: center;
             flex-wrap: wrap;
         }
 
-        .nav-group {
-            display: flex;
-            gap: 12px;
-            flex-wrap: nowrap;
-            align-items: stretch;
-        }
-
-        .nav-group .btn {
-            min-width: 110px;
-            justify-content: center;
-        }
-
-        .btn {
-            padding: 12px 24px;
-            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+        .nav-link {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 8px;
-            text-transform: uppercase;
-            font-weight: 700;
             text-decoration: none;
-            color: #000;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-            font-size: 13px;
-            letter-spacing: 1px;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3);
-            white-space: nowrap;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 1px solid rgba(243, 156, 18, 0.3);
         }
 
-        .btn:hover {
+        .nav-link:hover {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
             transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(243, 156, 18, 0.5);
-            background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
-        }
-
-        .btn-secondary {
-            background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
-            color: #ecf0f1;
-            box-shadow: 0 4px 15px rgba(52, 73, 94, 0.3);
-        }
-
-        .btn-secondary:hover {
-            background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
-            box-shadow: 0 6px 25px rgba(52, 73, 94, 0.5);
-        }
-
-        .btn-blog {
-            background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
-            color: #fff;
-            box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
-        }
-
-        .btn-blog:hover {
-            background: linear-gradient(135deg, #8e44ad 0%, #7d3c98 100%);
-            box-shadow: 0 6px 25px rgba(155, 89, 182, 0.5);
-        }
-
-        .btn-icon {
-            font-size: 16px;
+            box-shadow: 0 5px 20px rgba(243, 156, 18, 0.4);
         }
 
         /* Flash Messages */
@@ -180,7 +118,7 @@
         .slideshow-section {
             max-width: 1400px;
             margin: 30px auto;
-            padding: 0 20px;
+            padding: 80px 20px 0 20px;
         }
 
         .slideshow-container {
@@ -413,42 +351,22 @@
 </head>
 <body>
 
-    <header>
-        <div class="header-content">
-            <div class="brand-section">
-                <h1 class="brand-title">📸 BirdyPhillips</h1>
-            </div>
-            <div class="header-actions">
+    <nav>
+        <div class="nav-container">
+            <div class="logo">BIRDYPHILLIPS</div>
+            <div class="nav-links">
+                <a href="{{ url_for('main.home') }}" class="nav-link">Home</a>
+                <a href="{{ url_for('main.gallery') }}" class="nav-link">Gallery</a>
+                <a href="{{ url_for('blog.blog_index') }}" class="nav-link">Blog</a>
                 {% if session.logged_in %}
-                    <div class="nav-group">
-                        <a href="{{ url_for('blog.blog_index') }}" class="btn btn-blog">
-                            <span class="btn-icon">📝</span>
-                            <span>Blog</span>
-                        </a>
-                        <a href="{{ url_for('main.admin_dashboard') }}" class="btn btn-secondary">
-                            <span class="btn-icon">🎛️</span>
-                            <span>Admin</span>
-                        </a>
-                        <a href="{{ url_for('auth.logout') }}" class="btn btn-secondary">
-                            <span class="btn-icon">🚪</span>
-                            <span>Logout</span>
-                        </a>
-                    </div>
+                    <a href="{{ url_for('main.admin_dashboard') }}" class="nav-link">Admin</a>
+                    <a href="{{ url_for('auth.logout') }}" class="nav-link">Logout</a>
                 {% else %}
-                    <div class="nav-group">
-                        <a href="{{ url_for('blog.blog_index') }}" class="btn btn-blog">
-                            <span class="btn-icon">📝</span>
-                            <span>Blog</span>
-                        </a>
-                        <a href="{{ url_for('auth.login') }}" class="btn btn-secondary">
-                            <span class="btn-icon">🔐</span>
-                            <span>Admin</span>
-                        </a>
-                    </div>
+                    <a href="{{ url_for('auth.login') }}" class="nav-link">Login</a>
                 {% endif %}
             </div>
         </div>
-    </header>
+    </nav>
 
     <div class="flash-container">
         {% with messages = get_flashed_messages(with_categories=true) %}

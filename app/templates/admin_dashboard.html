@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - BirdyPhillips</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,28 +15,92 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 50%, #16213e 100%);
             min-height: 100vh;
-            padding: 20px;
+            color: white;
+        }
+
+        nav {
+            background: linear-gradient(180deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.8) 100%);
+            backdrop-filter: blur(10px);
+            padding: 20px 40px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #f39c12;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 28px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 1px solid rgba(243, 156, 18, 0.3);
+        }
+
+        .nav-link:hover {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(243, 156, 18, 0.4);
         }
 
         .dashboard-container {
             max-width: 1400px;
             margin: 0 auto;
+            padding: 100px 20px 40px 20px;
         }
 
         .dashboard-header {
-            background: white;
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 15px;
             padding: 30px;
             margin-bottom: 30px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            border: 1px solid rgba(243, 156, 18, 0.2);
         }
 
         .dashboard-header h1 {
-            color: #333;
+            color: white;
             margin-bottom: 10px;
             font-size: 2rem;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .header-actions {
@@ -389,6 +454,23 @@
     </style>
 </head>
 <body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">BIRDYPHILLIPS</div>
+            <div class="nav-links">
+                <a href="{{ url_for('main.home') }}" class="nav-link">Home</a>
+                <a href="{{ url_for('main.gallery') }}" class="nav-link">Gallery</a>
+                <a href="{{ url_for('blog.index') }}" class="nav-link">Blog</a>
+                {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('main.admin_dashboard') }}" class="nav-link">Admin</a>
+                    <a href="{{ url_for('auth.logout') }}" class="nav-link">Logout</a>
+                {% else %}
+                    <a href="{{ url_for('auth.login') }}" class="nav-link">Login</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             <div class="flash-messages">
@@ -402,16 +484,9 @@
     <div class="dashboard-container">
         <div class="dashboard-header">
             <h1>🎛️ Admin Dashboard</h1>
-            <p style="color: #6b7280; margin-top: 5px;">Welcome back, {{ session.username }}! Manage your content here.</p>
+            <p style="color: #95a5a6; margin-top: 5px;">Welcome back, {{ session.username }}! Manage your content here.</p>
             
             <div class="header-actions">
-                <a href="{{ url_for('main.home') }}" class="btn btn-secondary">← Home</a>
-                <div class="nav-group">
-                    <a href="{{ url_for('main.gallery') }}" class="btn btn-secondary">🖼️ Gallery</a>
-                    <a href="{{ url_for('blog.blog_index') }}" class="btn btn-primary">📝 Blog</a>
-                    <a href="{{ url_for('main.admin_dashboard') }}" class="btn btn-secondary">🎛️ Admin</a>
-                    <a href="{{ url_for('auth.logout') }}" class="btn btn-danger">🚪 Logout</a>
-                </div>
                 <div class="action-group">
                     <a href="{{ url_for('media.upload') }}" class="btn btn-warning">📤 Upload Media</a>
                     <a href="{{ url_for('blog.new_post') }}" class="btn btn-success">✍️ New Blog Post</a>
