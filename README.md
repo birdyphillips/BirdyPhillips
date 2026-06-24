@@ -20,8 +20,8 @@ Navy veteran and former cook turned Network Engineer and Developer. Focused on c
 | Repo | Description |
 |------|-------------|
 | [Access_Engineering](https://github.com/birdyphillips/Access_Engineering) | Low Latency DOCSIS (LLD) testing, Kafka telemetry consumers, TimescaleDB, Cisco training labs, and test case documentation |
-| [netperf-orchestrator](https://github.com/birdyphillips/netperf-orchestrator) | Network performance test orchestration |
-| [netperf-api](https://github.com/birdyphillips/netperf-api) | Network performance API backend |
+| [netperf-orchestrator](https://github.com/birdyphillips/netperf-orchestrator) | CLI-based DOCSIS 3.1/4.0 network performance orchestration — integrates ByteBlower, PacketStorm RTT, iPerf3 (TCP/Prague, Apple QUIC/L4S), and Ookla SpeedTest with SNMP monitoring, Kafka telemetry, and automated 36-scenario test execution |
+| [netperf-api](https://github.com/birdyphillips/netperf-api) | REST API backend for network performance test management and results retrieval |
 | [SNMP_API](https://github.com/birdyphillips/SNMP_API) | SNMP polling and API interface for network device metrics |
 
 ### Computer Science & Training
