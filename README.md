@@ -1,4 +1,4 @@
-# Hi, I'm Birdy Phillips
+# Hi, I'm Andre Phillips
 
 Network Engineer and Developer focused on cable network telemetry, DOCSIS infrastructure, and automation.
 
