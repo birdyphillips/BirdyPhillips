@@ -1,6 +1,17 @@
 # Hi, I'm Andre Phillips
 
-Network Engineer and Developer focused on cable network telemetry, DOCSIS infrastructure, and automation.
+Navy veteran and former cook turned Network Engineer and Developer. Focused on cable network telemetry, DOCSIS infrastructure, and automation.
+
+## About Me
+
+- 🎖️ U.S. Navy Veteran
+- 🎓 B.S. Cybersecurity
+- 🎓 A.S. Computer Networking
+- 🎓 Certificate in Computer Information Systems
+- 📜 CompTIA Security+
+- 📜 CompTIA Network+
+- 📜 CompTIA Linux+
+- 📜 Certified Wireless Network Administrator (CWNA)
 
 ## Repositories
 
