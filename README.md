@@ -11,6 +11,7 @@ Navy veteran and former cook turned Network Engineer and Developer. Focused on c
 - 📜 CompTIA Security+
 - 📜 CompTIA Network+
 - 📜 CompTIA Linux+
+- 📜 Cisco Certified Network Associate (CCNA)
 - 📜 Certified Wireless Network Administrator (CWNA)
 
 ## Repositories
