@@ -24,6 +24,13 @@ Navy veteran and former cook turned Network Engineer and Developer. Focused on c
 | [netperf-api](https://github.com/birdyphillips/netperf-api) | API version of netperf-orchestrator — Flask/REST interface for remote test execution and results retrieval |
 | [SNMP_API](https://github.com/birdyphillips/SNMP_API) | SNMP polling and API interface for network device metrics |
 
+### Cybersecurity
+
+- Security monitoring, network defense, vulnerability assessment, and incident response
+- Cloud and virtualization security, access control, and security architecture
+- Linux security, digital forensics, auditing, and governance
+- Secure programming practices with Python, SQL, and automation
+
 ### Computer Science & Training
 
 | Repo | Description |
