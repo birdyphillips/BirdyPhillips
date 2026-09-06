@@ -20,9 +20,9 @@ Navy veteran and former cook turned Network Engineer and Developer. Focused on c
 
 | Repo | Description |
 |------|-------------|
-| [Access_Engineering](https://github.com/birdyphillips/Access_Engineering) | Low Latency DOCSIS (LLD) testing, Kafka telemetry consumers, TimescaleDB, Cisco training labs, and test case documentation |
-| [netperf-orchestrator](https://github.com/birdyphillips/netperf-orchestrator) | CLI-based DOCSIS 3.1/4.0 network performance orchestration — integrates ByteBlower, PacketStorm RTT, iPerf3 (TCP/Prague, Apple QUIC/L4S), and Ookla SpeedTest with SNMP monitoring, Kafka telemetry, and automated 36-scenario test execution |
-| [netperf-api](https://github.com/birdyphillips/netperf-api) | API version of netperf-orchestrator — Flask/REST interface for remote test execution and results retrieval |
+| [CM_Collector](https://github.com/birdyphillips/CM_Collector) | Python tooling for collecting and processing cable-modem data |
+| [delta-docsis](https://github.com/birdyphillips/delta-docsis) | DOCSIS network telemetry and performance engineering |
+| [delta-docsis-api](https://github.com/birdyphillips/delta-docsis-api) | API services for DOCSIS telemetry and network workflows |
 | [SNMP_API](https://github.com/birdyphillips/SNMP_API) | SNMP polling and API interface for network device metrics |
 
 ### Cybersecurity
@@ -38,15 +38,21 @@ Navy veteran and former cook turned Network Engineer and Developer. Focused on c
 |------|-------------|
 | [Principles-of-Programming](https://github.com/birdyphillips/Principles-of-Programming) | Programming fundamentals coursework |
 | [Principles-of-Software-Development](https://github.com/birdyphillips/Principles-of-Software-Development) | Software development principles and practices |
-| [Foundations-of-Operating-System](https://github.com/birdyphillips/Foundations-of-Operating-System) | Operating systems concepts and exercises |
+| [Foundations-of-Operating-Systems](https://github.com/birdyphillips/Foundations-of-Operating-Systems) | Operating systems concepts and exercises |
+| [Foundations-of-Operating-System](https://github.com/birdyphillips/Foundations-of-Operating-System) | Earlier operating systems coursework repository |
+| [design-and-analysis-of-algorithms](https://github.com/birdyphillips/design-and-analysis-of-algorithms) | Data structures, algorithms, performance analysis, and coursework projects |
+| [Ethical-Leadership-in-Software-Development](https://github.com/birdyphillips/Ethical-Leadership-in-Software-Development) | Ethical leadership and professional software-development coursework |
 | [Linux_Training](https://github.com/birdyphillips/Linux_Training) | Linux administration and command-line training |
 
-### Utility & Team Projects
+### Essays & Writing
 
 | Repo | Description |
 |------|-------------|
-| [Scripts](https://github.com/birdyphillips/Scripts) | General-purpose utility scripts |
-| [Wist_Team_Project](https://github.com/birdyphillips/Wist_Team_Project) | Team collaboration project |
+| [Exploring Rhetoric and the Pursuit of Truth](https://github.com/birdyphillips/BirdyPhillips/blob/main/content/blogs/2025-11-22-exploring-rhetoric-and-the-pursuit-of-truth.md) | Reflections on rhetoric, truth, and persuasion |
+| [Enlightenment and Sophistry](https://github.com/birdyphillips/BirdyPhillips/blob/main/content/blogs/2025-11-22-enlightenment-and-sophistry-a-critical-analysis-of-plato-and-isocrates.md) | A critical analysis of Plato and Isocrates |
+| [Oratory Skills and Appearance](https://github.com/birdyphillips/BirdyPhillips/blob/main/content/blogs/2025-11-22-oratory-skills-and-appearance-in-a-technological-society.md) | Communication and presentation in a technological society |
+| [Crafting an Image](https://github.com/birdyphillips/BirdyPhillips/blob/main/content/blogs/2025-11-22-crafting-an-image-the-intersection-of-oratory-skills-and-physical-appearance-in-modern-media.md) | The relationship between oratory, appearance, and modern media |
+| [Welcome](https://github.com/birdyphillips/BirdyPhillips/blob/main/content/blogs/2025-11-22-welcome.md) | Introduction to the writing collection |
 
 ## Tech Stack
 
